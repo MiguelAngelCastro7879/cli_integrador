@@ -1,0 +1,21 @@
+mat-card {
+  margin: 2em auto;
+  text-align: center;
+  width: 60%;
+}
+mat-form-field {
+  display: block;
+}
+.contenedor{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  // background-color: aqua;
+  display: flex;
+  
+  align-items: center;
+  background-image:url("https://i.blogs.es/00fa3d/wallpapers-minimalistas/450_1000.jpg");
+  background-size: 100%;
+}

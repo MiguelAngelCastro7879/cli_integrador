@@ -1,26 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { FormsModule } from '@angular/forms';
+// import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './componentes/estructura/sidebar/sidebar.component';
-import { LoginComponent } from './componentes/auth/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RegisterComponent } from './componentes/auth/register/register.component';
-import { InicioComponent } from './componentes/estructura/inicio/inicio.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from './auth/auth.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    LoginComponent,
-    RegisterComponent,
-    InicioComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    AuthModule
+
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorService,
+    //   multi: true
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
