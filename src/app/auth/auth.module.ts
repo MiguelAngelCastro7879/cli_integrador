@@ -15,6 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -38,6 +39,7 @@ import { FormsModule } from '@angular/forms';
     MatSlideToggleModule,
     MatSelectModule,
     MatOptionModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }

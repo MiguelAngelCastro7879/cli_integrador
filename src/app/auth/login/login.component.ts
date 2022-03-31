@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/Models/User';
 import { AuthService } from '../auth.service';
-import { filter, Subject, take, takeUntil } from 'rxjs';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,10 +9,8 @@ import { filter, Subject, take, takeUntil } from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public loginValid = true;
-  public username = '';
-  public password = '';
+  public user: User = {}
 
-  private _destroySub$ = new Subject<void>();
   // private readonly returnUrl: string;
 
   constructor(
@@ -32,20 +29,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this._destroySub$.next();
   }
 
   public onSubmit(): void {
-    // this.loginValid = true;
-
-    // this._authService.login(this.username, this.password).pipe(
-    //   take(1)
-    // ).subscribe({
-    //   next: _ => {
-    //     this.loginValid = true;
-    //     this._router.navigateByUrl('/game');
-    //   },
-    //   error: _ => this.loginValid = false
-    // });
+    this._authService.login(this.user).subscribe(respuesta=>{
+      console.log(respuesta)
+    }, error=>{
+      console.log(error)
+    });
   }
 }
