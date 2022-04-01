@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Respuesta } from '../Models/Respuesta';
+import { rutas } from '../Models/rutas.const';
 import { User } from '../Models/User';
 
 @Injectable({
@@ -14,7 +14,10 @@ export class AuthService {
   }
   
   login(info: User){
-    console.log('Login');
-    return this.http.post<Respuesta>(`${environment.urlbase}/login`, info)
+    return this.http.post<Respuesta>(rutas.login, info)
+  }
+  
+  register(info: User){
+    return this.http.post<Respuesta>(rutas.register, info)
   }
 }

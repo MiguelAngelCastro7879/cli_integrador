@@ -16,13 +16,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
   declarations: [
-    LoginComponent,
     RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +40,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatOptionModule,
     ReactiveFormsModule
+  ],
+  providers:[
+    CookieService
   ]
 })
 export class AuthModule { }

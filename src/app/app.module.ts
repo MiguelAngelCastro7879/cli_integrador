@@ -23,7 +23,7 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    AuthModule
+    // AuthModule
 
   ],
   providers: [

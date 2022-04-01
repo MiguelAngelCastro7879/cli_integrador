@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/Models/User';
 import { AuthService } from '../auth.service';
 @Component({
@@ -14,9 +15,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   // private readonly returnUrl: string;
 
   constructor(
-    private _route: ActivatedRoute,
     private _router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _cookieService: CookieService
   ) {
     // this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
@@ -32,10 +33,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(): void {
+    
     this._authService.login(this.user).subscribe(respuesta=>{
-      console.log(respuesta)
+      // console.log(respuesta.access_token!.token)
+      this._cookieService.set('token',respuesta.access_token!.token!,4,'/')
+      this._router.navigate(['/main']);
+      alert('Sesion iniciada')
     }, error=>{
-      console.log(error)
+      // console.log()
+      alert(error.error.error)
     });
   }
 }

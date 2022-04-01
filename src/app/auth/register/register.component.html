@@ -1,9 +1,9 @@
 <div class="contenedor">
     <mat-card>
       <mat-card-content>
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
           <br>
-          <h1>Iniciar Sesión</h1>
+          <h1>Crear cuenta</h1>
           <mat-error *ngIf="!loginValid">
             The username and password were not recognized
           </mat-error>
@@ -32,10 +32,23 @@
             </mat-error>
           </mat-form-field>
           <br>
-          <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.form.valid">Login</button>
+          <mat-form-field>
+            <input matInput placeholder="Username" type="username" [(ngModel)]="user.username" name="username" #username="ngModel"aria-describedby="usernameHelp" required [ngClass]="{'is-valid': !username.invalid, 'is-invalid': username.invalid}" pattern="^@+[a-zA-Z0-9]*$"/>
+            <mat-error class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">
+              <div *ngIf="username.errors?.['required']">
+                Introduzca un nombre de usuario válido por favor {{ email.value }}
+              </div>
+              <div *ngIf="username.errors && username.errors?.['pattern']">
+                El nombre de usuario no sigue el formato correcto. Sigue este ejemplo: @mikeangel7879
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.form.valid">Registrate</button>
         </form>
         <br>
-        <a href="register" class="registrate" >¿No tienes cuenta? Crea una aquí</a>
+        <a href="/auth/login" class="registrate" >¿Ya tienes cuenta? Inicia sesión</a>
         <br><br>
       </mat-card-content>
     </mat-card>

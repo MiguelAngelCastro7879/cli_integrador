@@ -4,5 +4,5 @@ export interface Respuesta {
     mensaje?: string;
     usuario?: User;
     usuarios?: User[];
-    token?: Token;
+    access_token?: Token;
 }

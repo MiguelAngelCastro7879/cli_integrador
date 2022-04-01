@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { User } from 'src/app/Models/User';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,17 +11,15 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   public loginValid = true;
-  public user = {
-    email:'',
-    password:''
-  }
+  public user :User ={}
 
   // private readonly returnUrl: string;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _cookieService: CookieService
   ) {
     // this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
@@ -35,17 +35,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(): void {
-    alert('holaa')
     // this.loginValid = true;
-
-    // this._authService.login(this.username, this.password).pipe(
-    //   take(1)
-    // ).subscribe({
-    //   next: _ => {
-    //     this.loginValid = true;
-    //     this._router.navigateByUrl('/game');
-    //   },
-    //   error: _ => this.loginValid = false
-    // });
+    this._authService.register(this.user).subscribe(respuesta=>{
+      alert(respuesta.mensaje!)
+      //#######################################################################
+      this._authService.login(this.user).subscribe(respuesta=>{
+        // console.log(respuesta.access_token!.token)
+        this._cookieService.set('token',respuesta.access_token!.token!,4,'/')
+        this._router.navigate(['/main']);
+        // alert('Sesion iniciada')
+      }, error=>{
+        // console.log()
+        alert(error.error.error)
+      });
+      //#######################################################################
+    },error=>{
+      alert(error.error.error)
+    })
   }
 }
