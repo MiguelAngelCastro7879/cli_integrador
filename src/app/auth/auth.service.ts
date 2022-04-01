@@ -20,4 +20,8 @@ export class AuthService {
   register(info: User){
     return this.http.post<Respuesta>(rutas.register, info)
   }
+
+  validar(){
+    return this.http.get<Respuesta>(rutas.token_validacion)
+  }
 }
