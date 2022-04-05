@@ -1,3 +1,11 @@
+<div class="overlay" *ngIf="!load">
+  <div class="spinner ">
+      <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+    </div>
+  </div>
+  <div *ngIf="load">
+  Datos cargados correctamente
+  </div>
 <div class="contenedor">
     <mat-card>
       <mat-card-content>

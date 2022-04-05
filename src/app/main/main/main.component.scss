@@ -64,3 +64,26 @@ mat-toolbar {
     margin-bottom: 16px;
     background-color: rgba(255, 255, 255, 0.5);
   }
+
+  #menu li>a{
+    background-color: grey;
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    min-width: 100px;
+  }
+  #menu li>a:hover{
+    color: #000;
+    background-color: #eaeaea;
+  }
+  #menu>li{
+    float: left;
+    text-align:center
+  }
+  #menu>li>ul{
+    display: none;
+  }
+  #menu>li:hover>ul {
+    display:block;
+  }

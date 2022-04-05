@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { rutas } from 'src/environments/environment';
 import { Respuesta } from '../Models/Respuesta';
-import { rutas } from '../Models/rutas.const';
 import { User } from '../Models/User';
 
 @Injectable({
@@ -9,8 +10,10 @@ import { User } from '../Models/User';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
-    console.log('Servicio funcionando');
+  constructor(
+    private http: HttpClient,
+    private _cookieService: CookieService) 
+  {
   }
   
   login(info: User){
@@ -21,7 +24,24 @@ export class AuthService {
     return this.http.post<Respuesta>(rutas.register, info)
   }
 
-  validar(){
+  
+  getUser(){
     return this.http.get<Respuesta>(rutas.token_validacion)
+  }
+
+  setToken(token: string): void {
+    this._cookieService.set('token',token,4,'/')
+  }
+
+  getJwtToken() {
+    return this._cookieService.get('token');
+  }
+
+  removeToken(): void {
+    this._cookieService.delete('token');
+  }
+
+  isLoggedIn() {
+    return !!this.getJwtToken();
   }
 }

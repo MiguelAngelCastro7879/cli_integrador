@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginRegisterGuard } from './shared/guards/login-register.guard';
+import { PanelesGuard } from './shared/guards/paneles.guard';
 
 const routes: Routes = [
   
@@ -15,6 +16,7 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
+    canActivateChild:[PanelesGuard]
   },
 ];
 

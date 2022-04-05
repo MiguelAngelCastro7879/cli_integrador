@@ -9,27 +9,25 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class LoginRegisterGuard implements CanActivateChild {
   
-  constructor(private router:Router,private _authService: AuthService, private cookieService: CookieService){
-  }
-  redireccion(cookies:boolean):any{
-    if(!cookies){
-      return this.router.navigate(['/main']);
-    }
+  constructor(private router:Router,private _authService: AuthService, private _cookieService:CookieService){
   }
   
+  
+  redireccion(cookies:boolean):any{
+    if(cookies){
+      return this.router.navigate(['/main']);
+    }else{
+      return this.router.navigate(['/auth/login']);
+    }
+  }
+
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const cookie=this.cookieService.check('token');
-    let activar = true
-    this._authService.validar().subscribe(
-      respuesta=>{ 
-        activar = true
-      },error=>{
-        activar =false
-      }
-    )
-    console.log(activar)
-    return cookie
+
+    if (this._authService.isLoggedIn()) {
+      this.router.navigate(['/main']);
+    }
+    return !this._authService.isLoggedIn();
   }
 }

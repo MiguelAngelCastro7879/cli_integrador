@@ -6,7 +6,13 @@ export const environment = {
   production: false,
   urlbase:'http://localhost:3333/api/v1'
 };
-
+export const rutas = {
+  login:`${environment.urlbase}/login`,
+  register:`${environment.urlbase}/user`,
+  token_validacion:`${environment.urlbase}/get/user`,
+  obtenerVistas:`${environment.urlbase}/get/views`,
+}
+ 
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

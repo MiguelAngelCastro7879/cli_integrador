@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule } from './auth/auth.module';
+import { TokenInterceptorService } from './shared/services/token-interceptor.service';
 
 
 
@@ -27,11 +27,11 @@ import { AuthModule } from './auth/auth.module';
 
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptorService,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
