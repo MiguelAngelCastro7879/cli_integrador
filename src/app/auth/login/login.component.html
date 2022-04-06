@@ -1,0 +1,51 @@
+<div class="overlay" *ngIf="!load">
+  <div class="spinner ">
+    <!-- <mat-spinner></mat-spinner> -->
+      <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+    </div>
+  </div>
+  <div *ngIf="load">
+  Datos cargados correctamente
+  </div>
+<div class="contenedor">
+  <mat-card>
+    <mat-card-content>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <br>
+        <h1>Iniciar Sesión</h1>
+        <mat-error *ngIf="!loginValid">
+          The username and password were not recognized
+        </mat-error>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Email" type="email" [(ngModel)]="user.email" name="email" #email="ngModel"aria-describedby="emailHelp" required [ngClass]="{'is-valid': !email.invalid, 'is-invalid': email.invalid}" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"/>
+          <mat-error class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors?.['required']">
+              Introduzca un correo electrónico válido por favor {{ email.value }}
+            </div>
+            <div *ngIf="email.errors && email.errors?.['pattern']">
+              El correo electrónico no sigue el formato correcto. Sigue este ejemplo: pedro@gmail.com
+            </div>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput type="password"[(ngModel)]="user.password" name="password" minlength="8"  required  id="inpPassword" #password="ngModel" placeholder="Password" required [ngClass]="{'is-valid': !password.invalid, 'is-invalid': password.invalid}"  />
+          <mat-error class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors?.['minlength']">
+              Introduzca una Contraseña con 8 Caracteres Minimo
+            </div>
+            <div *ngIf="password.errors?.['required']">
+              Introduzca una contraseña por favor
+            </div>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.form.valid">Login</button>
+      </form>
+      <br>
+      <a href="/auth/register" class="registrate" >¿No tienes cuenta? Crea una aquí</a>
+      <br><br>
+    </mat-card-content>
+  </mat-card>
+</div>
