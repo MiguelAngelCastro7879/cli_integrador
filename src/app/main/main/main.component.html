@@ -57,14 +57,14 @@
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </button>
-      <button mat-button class="menu-button" routerLink="vistas">
+      <button mat-button class="menu-button">
         <mat-icon>important_devices</mat-icon>
         <span at-menu-item [matMenuTriggerFor]="subMenu">Views
           <mat-menu #subMenu="matMenu">
             <mat-list-item>
-            <a mat-menu-item routerLink="login"><mat-icon mat-list-icon>widgets</mat-icon>Categories</a>
-            <a mat-menu-item routerLink="registro"><mat-icon mat-list-icon>group</mat-icon>Roles</a>
-            <a mat-menu-item routerLink="info"><mat-icon mat-list-icon>person</mat-icon>Usuarios</a>
+            <a mat-menu-item routerLink="login"><mat-icon mat-list-icon>widgets</mat-icon>Datos Carrito</a>
+            <a mat-menu-item routerLink="registro"><mat-icon mat-list-icon>equalizer</mat-icon>Estadisticas</a>
+            <a mat-menu-item routerLink="vistas"><mat-icon mat-list-icon>person</mat-icon>Usuarios</a>
             </mat-list-item>
           </mat-menu>
         </span>

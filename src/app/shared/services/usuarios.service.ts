@@ -4,6 +4,7 @@ import { Respuesta } from '../../Models/Respuesta';
 import { rutas } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +18,7 @@ export class UsuariosService {
   append('Authorization',`Bearer ${this.token}`)
   
   
-  getAll(){
+  getAll(): Observable<any>{
     return this.http.get<Respuesta>(rutas.usuarios, {headers:this.header})
   }
   getOne(indice:any){

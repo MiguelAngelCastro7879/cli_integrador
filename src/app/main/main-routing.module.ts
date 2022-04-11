@@ -4,7 +4,6 @@ import { MainComponent2 } from './main copy/main.component';
 import { MainComponent } from './main/main.component';
 import { VistasComponent } from './vistas/vistas.component';
 import { GraficasComponent } from './graficas/graficas.component';
-
 const routes: Routes = [
   {
     path: '',

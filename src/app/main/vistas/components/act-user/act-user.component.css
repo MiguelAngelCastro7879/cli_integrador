@@ -1,0 +1,27 @@
+
+  .color{
+    background: #004a9f;
+    color: white;
+  }
+    .main-div{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .text{
+      font-size: 60px;
+      justify-content: center;
+      text-align: center;
+    }
+    .example-full-width1{
+      width: 100%;
+    }
+    .example-full-width {
+      width: 100%;
+      padding-top: 15px;
+    }
+    .tamaño{
+      font-size: 45px;
+      margin-left: 3px;
+    }
