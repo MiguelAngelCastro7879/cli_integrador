@@ -1,0 +1,24 @@
+.al{
+    text-align: center;
+}
+.a{
+    align-items: center;
+    justify-content: center;
+}
+mat-card{
+    border-radius: 1.13rem;
+    border-color: rgba(18, 0, 42, 0.897);
+    border: 1px solid #000;
+}
+mat-card-title{
+    padding-top: 25px;
+    padding-bottom: 8px;
+}
+.t{
+    font-size: 60px;
+}
+.tu{
+    font-size: 40px;
+}
+
+

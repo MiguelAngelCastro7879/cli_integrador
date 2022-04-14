@@ -3,11 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/Models/User';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuariosService } from 'src/app/shared/services/usuarios.service';
 import { ActUserComponent } from './components/act-user/act-user.component';
+import { VerComponent } from './components/ver/ver.component';
 
 @Component({
   selector: 'app-vistas',
@@ -24,12 +24,12 @@ export class VistasComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private peticion: UsuariosService, private auth: AuthService, private dialog:MatDialog) { }
+  constructor(private peticion: UsuariosService, private readonly dialog:MatDialog) { }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.leerlista()
-    this.sus = this.auth.refresh$.subscribe(()=>{
+    this.sus = this.peticion.refresh$.subscribe(()=>{
       this.leerlista()
     })
   } 
@@ -54,7 +54,16 @@ export class VistasComponent implements OnInit, OnDestroy, AfterViewInit {
     this.sus.unsubscribe();
     console.log('Observable:Cerrado')
 }
-  open(){
-    this.dialog.open(ActUserComponent);
+  open(row:any){
+    this.dialog.open(ActUserComponent,{
+      width:'40%',
+      data:row
+    });
+  }
+  view(row:any){
+    this.dialog.open(VerComponent, { 
+      width:'60%',
+      data:row
+    });
   }
 }

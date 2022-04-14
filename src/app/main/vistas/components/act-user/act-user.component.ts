@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/shared/services/usuarios.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-act-user',
@@ -12,31 +11,58 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class ActUserComponent implements OnInit {
 
   hide = true;
+  actionBtn : string = "Save"
+  form = this.fb.group({
+    username:['', {
+      validators: [Validators.required, Validators.minLength(5)],
+    }],
+    email: ['', {
+      validators: [Validators.required, Validators.email],
+    }],
+    password:['',{
+      validators:[Validators.required, Validators.minLength(8)],
+    }]
+    // roles_id:[4,{
+    //   validators:[Validators.required],
+    // }]
+  })
 
-  constructor(private u:UsuariosService, private ruter:Router, private cookies:CookieService) { }
+  error=false
+  constructor(private fb:FormBuilder, public dialogRef: MatDialogRef<ActUserComponent>,@Inject(MAT_DIALOG_DATA) public data:any, 
+  private u:UsuariosService) { }
 
   ngOnInit(): void {
+    if(this.data){
+      this.actionBtn = "Update"
+      this.form.controls['username'].setValue(this.data.username)
+      this.form.controls['email'].setValue(this.data.email)
+      this.form.controls['password'].setValue(this.data.password)
+      // this.form.controls['roles_id'].setValue(this.data.roles_id)
+    }
   }
-  form = new FormGroup({
-    email : new FormControl('', [Validators.required, Validators.email]),
-    nombre : new FormControl('', [Validators.required, Validators.minLength(5)]),
-    password : new FormControl('', [Validators.required, Validators.minLength(8)]),
-  });
 
   public hasError = (controlName: string, errorName: string) =>{
     return this.form.controls[controlName].hasError(errorName);
   }
 
-  send(){
+  closeDialog(){
+    this.dialogRef.close()
+  }
+
+  updateU(){
     if(this.form.invalid){
       return;
     }
   
-  this.u.update(this.form.get('nombre')?.value, this.form.get('email')?.value)
+  this.u.update(this.data.id,this.form.value)
   .subscribe((response: any)=>{
     console.log(response);
-    this.ruter.navigate(['/vistas']);
-    this.cookies.set('token',response.token!.token!,1,'/')
+    this.form.reset()
+    setTimeout(() =>this.dialogRef.close(), 2000)
+  },
+  error=>{
+    this.error = true
+    alert(error.error.Fail)
   });
 }
 }

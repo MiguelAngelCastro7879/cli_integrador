@@ -1,10 +1,11 @@
-
+<mat-card>
+  <mat-card-content>
             <form class="example-form"[formGroup]="form" autocomplete="off">
               <mat-form-field class="example-full-width1" appearance="fill">
                 <mat-label>Name</mat-label>
-                <input type="text" matInput formControlName="nombre" placeholder="Name">
-                <mat-error *ngIf="hasError('nombre', 'required')">Name is required</mat-error>
-                <mat-error *ngIf="hasError('nombre', 'minlength')">You have more than 5 characters</mat-error>
+                <input type="text" matInput formControlName="username" placeholder="Name">
+                <mat-error *ngIf="hasError('username', 'required')">Name is required</mat-error>
+                <mat-error *ngIf="hasError('username', 'minlength')">You have more than 5 characters</mat-error>
               </mat-form-field>
               <br>
                 <mat-form-field class="example-full-width1" appearance="fill">
@@ -24,6 +25,15 @@
                     </button>
                   </mat-form-field>
                   <br>
-                  <button mat-button class="color" (click)="send()">Register</button>
+                  <!-- <mat-form-field class="example-full-width1" appearance="fill">
+                    <mat-label>Rol</mat-label>
+                    <input type="text" matInput formControlName="roles_id" placeholder="UserRol">
+                    <mat-error *ngIf="hasError('roles_id', 'required')">Name is required</mat-error>
+                  </mat-form-field>
+                  <br> -->
+                  <button mat-button class="color" (click)="updateU()">{{actionBtn}}</button>
+                  <button mat-button style="background-color: brown; color:white" (click)="closeDialog()">Cancel</button>
                   <br>
               </form>
+            </mat-card-content>
+</mat-card>

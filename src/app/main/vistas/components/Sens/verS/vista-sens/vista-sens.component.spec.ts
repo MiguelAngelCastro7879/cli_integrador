@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActUserComponent } from './act-user.component';
+import { VistaSensComponent } from './vista-sens.component';
 
-describe('ActUserComponent', () => {
-  let component: ActUserComponent;
-  let fixture: ComponentFixture<ActUserComponent>;
+describe('VistaSensComponent', () => {
+  let component: VistaSensComponent;
+  let fixture: ComponentFixture<VistaSensComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActUserComponent ]
+      declarations: [ VistaSensComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActUserComponent);
+    fixture = TestBed.createComponent(VistaSensComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

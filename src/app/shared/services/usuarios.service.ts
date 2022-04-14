@@ -4,13 +4,19 @@ import { Respuesta } from '../../Models/Respuesta';
 import { rutas } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
+  private _refresh$ = new Subject<void>()
+  
   constructor( private http: HttpClient, private cookieService: CookieService) { }
+  
+  get refresh$(){
+    return this._refresh$;
+  }
 
   token = this.cookieService.get('token')
   header = new HttpHeaders().
@@ -21,14 +27,22 @@ export class UsuariosService {
   getAll(): Observable<any>{
     return this.http.get<Respuesta>(rutas.usuarios, {headers:this.header})
   }
-  getOne(indice:any){
-    return this.http.get<Respuesta>(rutas.usuarios+'/'+indice, {headers:this.header})
+  getOne(){
+    return this.http.get<Respuesta>(rutas.usuarios, {headers:this.header})
+  }
+  getUser(id:number): Observable<any>{
+    return this.http.get<Respuesta>(rutas.usuarios+'/'+id, {headers:this.header})
   }
   delete(indice:any){
     return this.http.delete<Respuesta>(rutas.usuarios+'/'+indice, {headers:this.header})
   }
-  update(indice:any, info: User){
-    return this.http.put<Respuesta>(rutas.usuarios+'/'+indice, info, {headers:this.header})
+  update(id:any, info: User): Observable<any>{
+    return this.http.put<Respuesta>(rutas.usuarios+'/'+id, info, {headers:this.header})
+    .pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    ); 
   }
   logout(){
     this.token = this.cookieService.get('token')

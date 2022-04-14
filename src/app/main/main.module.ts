@@ -15,10 +15,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule }from '@angular/material/list';
 import {MatGridListModule}from '@angular/material/grid-list';
 import { ActUserComponent } from './vistas/components/act-user/act-user.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { VerComponent } from './vistas/components/ver/ver.component';
+import { VistaSensComponent } from './vistas/components/Sens/verS/vista-sens/vista-sens.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import {MatTableModule} from '@angular/material/table';
     VistasComponent,
     GraficasComponent,
     ActUserComponent,
+    VerComponent,
+    VistaSensComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +39,7 @@ import {MatTableModule} from '@angular/material/table';
     ReactiveFormsModule,
     MainRoutingModule,
     SharedModule,
+    MatTooltipModule,
     MatCardModule,
     MatMenuModule,
     MatListModule,
@@ -46,8 +52,13 @@ import {MatTableModule} from '@angular/material/table';
     MatSortModule,
     MatDialogModule
   ],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+  ],
   entryComponents:[
-    ActUserComponent
+    ActUserComponent,
+    VerComponent
   ]
 })
 export class MainModule { }

@@ -18,12 +18,15 @@
   
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef> Acciones </th>
-          <td mat-cell *matCellDef="let element" style="text-align: left;">
-          <a class="pointer" style="color: rgb(255, 255, 255);" matTooltip="Ver Usuario">
+          <td mat-cell *matCellDef="let row" style="text-align: left;">
+          <a class="pointer" style="color: rgb(255, 255, 255);" matTooltip="Ver Usuario" (click)="view(row)">
             <mat-icon>search</mat-icon>
           </a>
-          <a class="pointer" style="color: rgb(0, 13, 86);" matTooltip="Editar Usuario" (click)="open()">
+          <a class="pointer" style="color: rgb(0, 13, 86);" matTooltip="Editar Usuario" (click)="open(row)">
             <mat-icon>edit</mat-icon>
+          </a>
+          <a class="pointer" style="color: black;" matTooltip="Status Usuario">
+            <mat-icon>check_box</mat-icon>
           </a>
         </td>
         </ng-container>

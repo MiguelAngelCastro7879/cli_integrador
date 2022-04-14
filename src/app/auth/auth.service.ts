@@ -10,37 +10,22 @@ import { User } from '../Models/User';
   providedIn: 'root'
 })
 export class AuthService {
-  private _refresh$ = new Subject<void>()
-  
   constructor(
     private http: HttpClient,
     private _cookieService: CookieService) 
   {
   }
 
-  get refresh$(){
-    return this._refresh$;
-  }
   login(info: User): Observable<any>{
     return this.http.post<Respuesta>(rutas.login, info)
-    .pipe(
-      tap(() => {
-        this._refresh$.next();
-      })
-    ); 
   }
   
   register(info: User): Observable<any>{
     return this.http.post<Respuesta>(rutas.register, info)
-    .pipe(
-      tap(() => {
-        this._refresh$.next();
-      })
-    ); 
   }
 
   
-  getUser(){
+  getUser(): Observable<any>{
     return this.http.get<Respuesta>(rutas.token_validacion)
   }
 
