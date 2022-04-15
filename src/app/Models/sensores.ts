@@ -5,6 +5,3 @@ export interface sensor {
     status?:     number;
 }
 
-export interface respSen{
-    sesnore: sensor []
-}

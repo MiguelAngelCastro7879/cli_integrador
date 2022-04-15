@@ -14,7 +14,7 @@ export const rutas = {
   usuarios:`${environment.urlbase}/user`,
   logout:`${environment.urlbase}/logout`,
   sensores:`${environment.urlbase}/sensores`,
-  
+  sensor:`${environment.urlbase}/sensores`,
 }
  
 /*

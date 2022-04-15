@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VerSensComponent } from './ver-sens.component';
+import { SenStatusComponent } from './sen-status.component';
 
-describe('VerSensComponent', () => {
-  let component: VerSensComponent;
-  let fixture: ComponentFixture<VerSensComponent>;
+describe('SenStatusComponent', () => {
+  let component: SenStatusComponent;
+  let fixture: ComponentFixture<SenStatusComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VerSensComponent ]
+      declarations: [ SenStatusComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VerSensComponent);
+    fixture = TestBed.createComponent(SenStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

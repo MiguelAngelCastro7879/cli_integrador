@@ -4,7 +4,6 @@ import { MainComponent2 } from './main copy/main.component';
 import { MainComponent } from './main/main.component';
 import { VistasComponent } from './vistas/vistas.component';
 import { GraficasComponent } from './graficas/graficas.component';
-import { ActuaSensComponent } from './vistas/components/Sens/actua-sens/actua-sens.component';
 import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.component';
 
 const routes: Routes = [
@@ -25,8 +24,9 @@ const routes: Routes = [
         component:GraficasComponent
       },
       {
-        path:''
-      }
+        path:'sensores',
+        component:VerSensComponent
+      },
     ]
   },
 ];

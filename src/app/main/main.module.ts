@@ -23,6 +23,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { VerComponent } from './vistas/components/ver/ver.component';
 import { ActuaSensComponent } from './vistas/components/Sens/actua-sens/actua-sens.component';
 import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.component';
+import { SenStatusComponent } from './vistas/components/Sens/sen-status/sen-status.component';
+import { UserStatusComponent } from './vistas/components/user-status/user-status.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.com
     VerComponent,
     VerSensComponent,
     ActuaSensComponent,
+    SenStatusComponent,
+    UserStatusComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +64,9 @@ import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.com
   ],
   entryComponents:[
     ActUserComponent,
-    VerComponent
+    VerComponent,
+    ActuaSensComponent,
+    UserStatusComponent
   ]
 })
 export class MainModule { }

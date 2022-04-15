@@ -33,8 +33,8 @@ export class UsuariosService {
   getUser(id:number): Observable<any>{
     return this.http.get<Respuesta>(rutas.usuarios+'/'+id, {headers:this.header})
   }
-  delete(indice:any){
-    return this.http.delete<Respuesta>(rutas.usuarios+'/'+indice, {headers:this.header})
+  status(id:any){
+    return this.http.delete<Respuesta>(rutas.usuarios+'/'+id, {headers:this.header})
   }
   update(id:any, info: User): Observable<any>{
     return this.http.put<Respuesta>(rutas.usuarios+'/'+id, info, {headers:this.header})

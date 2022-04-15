@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsuariosService } from 'src/app/shared/services/usuarios.service';
 import { ActUserComponent } from './components/act-user/act-user.component';
 import { VerComponent } from './components/ver/ver.component';
+import { UserStatusComponent } from './components/user-status/user-status.component';
 
 @Component({
   selector: 'app-vistas',
@@ -17,7 +18,7 @@ import { VerComponent } from './components/ver/ver.component';
 export class VistasComponent implements OnInit, OnDestroy, AfterViewInit {
   
   usuarios: User[] = []
-  displayedColumns: string[] = ['username', 'email', 'acciones']
+  displayedColumns: string[] = ['username', 'email', 'status', 'acciones']
   sus!: Subscription
   dataSource = new MatTableDataSource<User>(this.usuarios)
 
@@ -62,6 +63,12 @@ export class VistasComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   view(row:any){
     this.dialog.open(VerComponent, { 
+      width:'60%',
+      data:row
+    });
+  }
+  status(row:any){
+    this.dialog.open(UserStatusComponent, { 
       width:'60%',
       data:row
     });
