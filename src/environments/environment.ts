@@ -13,6 +13,8 @@ export const rutas = {
   obtenerVistas:`${environment.urlbase}/get/views`,
   usuarios:`${environment.urlbase}/user`,
   logout:`${environment.urlbase}/logout`,
+  sensores:`${environment.urlbase}/sensores`,
+  
 }
  
 /*

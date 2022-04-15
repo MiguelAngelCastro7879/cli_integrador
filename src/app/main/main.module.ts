@@ -21,7 +21,8 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { VerComponent } from './vistas/components/ver/ver.component';
-import { VistaSensComponent } from './vistas/components/Sens/verS/vista-sens/vista-sens.component';
+import { ActuaSensComponent } from './vistas/components/Sens/actua-sens/actua-sens.component';
+import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { VistaSensComponent } from './vistas/components/Sens/verS/vista-sens/vis
     GraficasComponent,
     ActUserComponent,
     VerComponent,
-    VistaSensComponent,
+    VerSensComponent,
+    ActuaSensComponent,
   ],
   imports: [
     CommonModule,
