@@ -7,6 +7,11 @@
     th{
       width: 18%;
     }
+.r{
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+    }
     .mat-form-field {
       font-size: 15px;
       width: 100%;

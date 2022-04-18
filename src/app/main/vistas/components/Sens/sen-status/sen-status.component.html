@@ -3,11 +3,10 @@
         <mat-card-title class="t">Change Status</mat-card-title>
     </mat-card-header>
     <mat-card-content class="al">
-        <mat-card-title  class="tu">Name:{{data.nombre}}</mat-card-title>
-        <mat-card-title  class="tu">Status:{{data.status}}</mat-card-title>
+        <mat-card-title  class="tu">¿Are you Sure That You Want To Change The Status?</mat-card-title>
     </mat-card-content>
     <mat-card-actions style="text-align: center;">
-        <button mat-button style="background-color: rgb(16, 5, 143); color:white;" (click)="status()">Change Status</button>
-        <button mat-button style="background-color: brown; color:white;" (click)="closeDialog()">Cancel</button>
+        <button mat-button style="background-color: rgb(16, 5, 143); color:white;" (click)="status()">YES</button>
+        <button mat-button style="background-color: brown; color:white;" (click)="closeDialog()">NO</button>
     </mat-card-actions>
 </mat-card>
