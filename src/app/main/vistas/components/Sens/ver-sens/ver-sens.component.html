@@ -27,8 +27,11 @@
           <a class="pointer" style="color: rgb(4, 0, 72);" matTooltip="Ver Sensor" (click)="view(row)">
             <mat-icon>search</mat-icon>
           </a>
-          <a class="pointer" style="color: black;" matTooltip="Status Sensor" (click)="open(row)">
-            <mat-icon>check_box</mat-icon>
+          <a class="pointer" *ngIf="row.status" style="color: black;" matTooltip="Status Usuario" (click)="open(row)">
+            <mat-icon> check_box</mat-icon>
+          </a>
+          <a class="pointer" *ngIf="!row.status" style="color: black;" matTooltip="Status Usuario" (click)="open(row)" >
+            <mat-icon>check_box_outline_blank</mat-icon>
           </a>
         </td>
         </ng-container>

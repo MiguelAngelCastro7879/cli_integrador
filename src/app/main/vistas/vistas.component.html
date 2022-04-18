@@ -30,8 +30,11 @@
           <a class="pointer" style="color: rgb(0, 13, 86);" matTooltip="Editar Usuario" (click)="open(row)">
             <mat-icon>edit</mat-icon>
           </a>
-          <a class="pointer" style="color: black;" matTooltip="Status Usuario" (click)="status(row)">
-            <mat-icon>check_box</mat-icon>
+          <a class="pointer" *ngIf="row.status" style="color: black;" matTooltip="Status Usuario" (click)="status(row)">
+            <mat-icon> check_box</mat-icon>
+          </a>
+          <a class="pointer" *ngIf="!row.status" style="color: black;" matTooltip="Status Usuario" (click)="status(row)" >
+            <mat-icon>check_box_outline_blank</mat-icon>
           </a>
         </td>
         </ng-container>

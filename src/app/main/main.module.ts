@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main/main.component';
 import { MainComponent2 } from './main copy/main.component';

@@ -11,3 +11,6 @@
     font-size: 15px;
     width: 100%;
   }
+  .example-margin {
+    margin: 0 10px;
+  }

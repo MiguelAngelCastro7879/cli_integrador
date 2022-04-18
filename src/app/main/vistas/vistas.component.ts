@@ -16,7 +16,6 @@ import { UserStatusComponent } from './components/user-status/user-status.compon
   styleUrls: ['./vistas.component.css']
 })
 export class VistasComponent implements OnInit, OnDestroy, AfterViewInit {
-  
   usuarios: User[] = []
   displayedColumns: string[] = ['username', 'email', 'status', 'acciones']
   sus!: Subscription

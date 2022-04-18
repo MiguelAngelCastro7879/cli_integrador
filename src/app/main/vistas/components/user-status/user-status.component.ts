@@ -31,13 +31,13 @@ export class UserStatusComponent implements OnInit {
     if(this.data.status == 0){
       this.data.status = 1
       console.log(response);
-      setTimeout(() =>this.dialogRef.close(), 2000)
+      setTimeout(() =>this.dialogRef.close(), 200)
       alert("Status Activo")
     }else if(this.data.status == 1){
       this.data.status = 0
       alert("Status InActivo")
       console.log(response);
-      setTimeout(() =>this.dialogRef.close(), 2000)
+      setTimeout(() =>this.dialogRef.close(), 200)
     }
   },
   error=>{
