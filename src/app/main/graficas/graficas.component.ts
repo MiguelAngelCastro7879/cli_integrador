@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Chart } from 'chart.js';
 @Component({
   selector: 'app-graficas',
   templateUrl: './graficas.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GraficasComponent implements OnInit {
 
+  @ViewChild("newCanvas ")
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    new Chart(elemento, configs);
   }
 
 }
