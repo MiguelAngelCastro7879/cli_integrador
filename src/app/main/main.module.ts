@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main/main.component';
 import { MainComponent2 } from './main copy/main.component';
@@ -12,7 +10,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VistasComponent } from './vistas/vistas.component';
-import { GraficasComponent } from './graficas/graficas.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule }from '@angular/material/list';
 import {MatGridListModule}from '@angular/material/grid-list';
@@ -27,19 +24,22 @@ import { ActuaSensComponent } from './vistas/components/Sens/actua-sens/actua-se
 import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.component';
 import { SenStatusComponent } from './vistas/components/Sens/sen-status/sen-status.component';
 import { UserStatusComponent } from './vistas/components/user-status/user-status.component';
+import { AppComponent } from '../app.component';
+import { NgChartsModule } from 'ng2-charts';
+
+
 
 @NgModule({
   declarations: [
     MainComponent,
     MainComponent2,
     VistasComponent,
-    GraficasComponent,
     ActUserComponent,
     VerComponent,
     VerSensComponent,
     ActuaSensComponent,
     SenStatusComponent,
-    UserStatusComponent
+    UserStatusComponent,
   ],
   imports: [
     CommonModule,
@@ -52,13 +52,14 @@ import { UserStatusComponent } from './vistas/components/user-status/user-status
     MatMenuModule,
     MatListModule,
     MatTableModule,
+    NgChartsModule,
     MatGridListModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
@@ -68,7 +69,8 @@ import { UserStatusComponent } from './vistas/components/user-status/user-status
     ActUserComponent,
     VerComponent,
     ActuaSensComponent,
-    UserStatusComponent
-  ]
+    UserStatusComponent,
+  ],
+  bootstrap:    [ AppComponent ]
 })
 export class MainModule { }

@@ -16,7 +16,6 @@ import { TokenInterceptorService } from './shared/services/token-interceptor.ser
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent2 } from './main copy/main.component';
 import { MainComponent } from './main/main.component';
 import { VistasComponent } from './vistas/vistas.component';
-import { GraficasComponent } from './graficas/graficas.component';
 import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.component';
 
 const routes: Routes = [
@@ -20,13 +19,9 @@ const routes: Routes = [
         component:VistasComponent
       },
       {
-        path:'graficas',
-        component:GraficasComponent
-      },
-      {
         path:'sensores',
         component:VerSensComponent
-      },
+      }
     ]
   },
 ];
