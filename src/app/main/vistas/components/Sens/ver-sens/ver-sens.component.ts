@@ -35,7 +35,7 @@ export class VerSensComponent implements OnInit, OnDestroy, AfterViewInit {
 
 leerlista(){
   this.peticion.getAll().subscribe((data: any) =>{
-    this.dataSource.data = data.autos!
+    this.dataSource.data = data.sensores!
     console.log(data)
   });
 }

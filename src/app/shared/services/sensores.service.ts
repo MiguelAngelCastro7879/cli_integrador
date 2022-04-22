@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subject, tap } from 'rxjs';
 import { sensor } from 'src/app/Models/sensores';
 import { Respuesta } from 'src/app/Models/Respuesta';
+import { Dato } from 'src/app/Models/Dato';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,20 @@ export class SensoresService
   }
   get(id:any): Observable<any>{
     return this.http.get<Respuesta>(rutas.sensor+'/'+id, {headers:this.header})
+  }
+  Datos(): Observable<any>{
+    return this.http.get<Respuesta>(rutas.datos, {headers:this.header})
+  }
+  CrearDatos(info:Dato): Observable<any>{
+    return this.http.post<Respuesta>(rutas.datos,info, {headers:this.header})
+    .pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    )
+  }
+  borrar(id:any){
+    return this.http.delete<Respuesta>(rutas.borrar+id, {headers:this.header})
   }
   status(id:any){
     return this.http.delete<Respuesta>(rutas.sensores+'/'+id, {headers:this.header})

@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { FormsModule } from '@angular/forms';
-//import { MatCardModule } from '@angular/material/card';
-// import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,10 +18,7 @@ import { TokenInterceptorService } from './shared/services/token-interceptor.ser
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-//    MatCardModule,
-    BrowserAnimationsModule,
-    // AuthModule
-
+    BrowserAnimationsModule
   ],
   providers: [
     {

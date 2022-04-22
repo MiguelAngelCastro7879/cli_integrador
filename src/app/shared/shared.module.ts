@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule }from '@angular/material/list';
+import {MatGridListModule}from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,8 +27,16 @@ import {MatTreeModule} from '@angular/material/tree';
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
+    MatPaginatorModule,
     MatIconModule,
     MatDividerModule,
+    MatGridListModule,
+    MatMenuModule,
+    MatSortModule,
+    MatListModule,
+    MatInputModule,
+    MatTooltipModule,
+    MatTableModule,
     MatExpansionModule,
     MatTreeModule,
     MatCardModule

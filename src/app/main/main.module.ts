@@ -3,22 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main/main.component';
 import { MainComponent2 } from './main copy/main.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import { MatIconModule }from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VistasComponent } from './vistas/vistas.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatListModule }from '@angular/material/list';
-import {MatGridListModule}from '@angular/material/grid-list';
 import { ActUserComponent } from './vistas/components/act-user/act-user.component';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import {MatTableModule} from '@angular/material/table';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { VerComponent } from './vistas/components/ver/ver.component';
 import { ActuaSensComponent } from './vistas/components/Sens/actua-sens/actua-sens.component';
 import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.component';
@@ -26,8 +14,10 @@ import { SenStatusComponent } from './vistas/components/Sens/sen-status/sen-stat
 import { UserStatusComponent } from './vistas/components/user-status/user-status.component';
 import { AppComponent } from '../app.component';
 import { NgChartsModule } from 'ng2-charts';
-
-
+import { GraficasComponent } from './graficas/graficas.component';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ControlesComponent } from './controles/controles.component';
+import { CrearComponent } from './graficas/crear/crear.component';
 
 @NgModule({
   declarations: [
@@ -36,29 +26,22 @@ import { NgChartsModule } from 'ng2-charts';
     VistasComponent,
     ActUserComponent,
     VerComponent,
+    VistasComponent,
     VerSensComponent,
     ActuaSensComponent,
     SenStatusComponent,
     UserStatusComponent,
+    GraficasComponent,
+    ControlesComponent,
+    CrearComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    NgChartsModule,
     ReactiveFormsModule,
     MainRoutingModule,
     SharedModule,
-    MatTooltipModule,
-    MatCardModule,
-    MatMenuModule,
-    MatListModule,
-    MatTableModule,
-    NgChartsModule,
-    MatGridListModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatSortModule,
     MatDialogModule,
   ],
   providers: [

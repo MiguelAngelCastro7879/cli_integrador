@@ -110,7 +110,6 @@ export class MainComponent implements OnInit {
 
   getUser(){
     this._authService.getUser().subscribe(respuesta=>{
-      console.log(respuesta)
       this.user = respuesta.usuario! 
     })
   }

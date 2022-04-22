@@ -15,6 +15,8 @@ export const rutas = {
   logout:`${environment.urlbase}/logout`,
   sensores:`${environment.urlbase}/sensores`,
   sensor:`${environment.urlbase}/sensores`,
+  datos:`${environment.urlbase}/dato`,
+  borrar:`${environment.urlbase}/dato/`,
 }
  
 /*

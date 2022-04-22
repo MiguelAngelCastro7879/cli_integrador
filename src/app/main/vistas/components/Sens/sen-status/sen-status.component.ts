@@ -29,7 +29,6 @@ export class SenStatusComponent implements OnInit {
   .subscribe((response: any)=>{
     if(this.data.status == 0){
       this.data.status = 1
-      console.log(response);
       setTimeout(() =>this.dialogRef.close(), 200)
       alert("Status Activo")
     }else if(this.data.status == 1){

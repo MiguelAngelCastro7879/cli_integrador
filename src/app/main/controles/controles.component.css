@@ -1,0 +1,36 @@
+.button-container{
+    display:inline-block;
+    position:relative;
+    }
+    
+    .a{
+    position: absolute;
+    top:14.5em;
+    left:10em;
+    }
+    .b{
+        position: absolute;
+        bottom:8.5em;
+        left:10.10em;
+        }
+        .c{
+            position: absolute;
+            bottom:12.7em;
+            left:6em;
+            }
+            .d{
+                position: absolute;
+                bottom:12.7em;
+                right:51.5em;
+                }
+                .e{
+                    position: absolute;
+                    bottom:9em;
+                    right:19.3em;
+                    }
+                    .f{
+                        position: absolute;
+                        bottom:9em;
+                        color: black;
+                        right:10.2em;
+                        }
