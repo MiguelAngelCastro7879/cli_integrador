@@ -36,7 +36,6 @@ export class VistasComponent implements OnInit, OnDestroy, AfterViewInit {
   leerlista(){
     this.peticion.getAll().subscribe((data: any) =>{
       this.dataSource.data = data.usuarios!
-      console.log(data)
     });
   }
 
@@ -52,7 +51,6 @@ export class VistasComponent implements OnInit, OnDestroy, AfterViewInit {
   
   ngOnDestroy(): void {
     this.sus.unsubscribe();
-    console.log('Observable:Cerrado')
 }
   open(row:any){
     this.dialog.open(ActUserComponent,{

@@ -22,8 +22,11 @@
           <a class="pointer" style="color: rgb(129, 129, 129);" matTooltip="Ver Auto" (click)="view(row._id)">
             <mat-icon>gamepad</mat-icon>
           </a>
-          <a class="pointer" style="color: rgb(129, 129, 129);" matTooltip="Datos Auto" (click)="view(row._id)">
+          <a class="pointer" style="color: rgb(129, 129, 129);" matTooltip="Datos Auto" (click)="data(row._id)">
             <mat-icon>search</mat-icon>
+          </a>
+          <a class="pointer" style="color: rgb(129, 129, 129);" matTooltip="Graficas" (click)="graficas(row._id)">
+            <mat-icon>notes</mat-icon>
           </a>
         </td>
         </ng-container>

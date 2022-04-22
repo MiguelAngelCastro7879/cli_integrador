@@ -36,7 +36,6 @@ export class VerSensComponent implements OnInit, OnDestroy, AfterViewInit {
 leerlista(){
   this.peticion.getAll().subscribe((data: any) =>{
     this.dataSource.data = data.sensores!
-    console.log(data)
   });
 }
 
@@ -52,7 +51,6 @@ applyFilter(event: Event) {
 
 ngOnDestroy(): void {
   this.sus.unsubscribe();
-  console.log('Observable:Cerrado')
 }
 
 open(row:any){

@@ -16,7 +16,6 @@ export class ActuaSensComponent implements OnInit {
     this.service.get(this.data.id)
     .subscribe((res:any)=>{
       this.sen = res.sensor!
-      console.log(res);
   })}
 
   closeDialog(){

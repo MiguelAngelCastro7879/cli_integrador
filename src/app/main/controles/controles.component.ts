@@ -14,7 +14,7 @@ export class ControlesComponent implements OnInit {
     _id:'',
     nombre:''
   }
-  
+
   constructor(private auto:AutoService,private activatedRouter: ActivatedRoute, private router:Router) {
     this.activatedRouter.params.subscribe(
       params=>{
@@ -31,13 +31,15 @@ export class ControlesComponent implements OnInit {
     this.auto.GetAuto(_id).subscribe(
       respuesta=>{
         this.movil = respuesta.auto![0]
-        console.log(respuesta)
       })
 }
 
 regresar(){
 this.router.navigate(['main/mongo'])
 }
+mover(){
+  this.router.navigate(['main/leds/'+this.movil._id])
+  }
 
   Adelante(_id: any){
     const body = {
@@ -47,7 +49,8 @@ this.router.navigate(['main/mongo'])
         "Motor_Reversa" : false, 
         "Motor_Derecha" : false, 
         "Motor_Izquieda" : false, 
-        "Motor_Apagado" : false
+        "Motor_Apagado" : false,
+        "Motor_Velocidad":50
       }
     }
 
@@ -62,7 +65,8 @@ this.router.navigate(['main/mongo'])
       "Motor_Reversa" : true, 
       "Motor_Derecha" : false, 
       "Motor_Izquieda" : false, 
-      "Motor_Apagado" : false 
+      "Motor_Apagado" : false,
+      "Motor_Velocidad":50
     }
   }
 
@@ -76,7 +80,8 @@ this.router.navigate(['main/mongo'])
       "Motor_Reversa" : false, 
       "Motor_Derecha" : false, 
       "Motor_Izquieda" : true, 
-      "Motor_Apagado" : false 
+      "Motor_Apagado" : false,
+      "Motor_Velocidad":50
     }
   }
 
@@ -91,7 +96,8 @@ this.router.navigate(['main/mongo'])
       "Motor_Reversa" : false, 
       "Motor_Derecha" : true, 
       "Motor_Izquieda" : false, 
-      "Motor_Apagado" : false 
+      "Motor_Apagado" : false,
+      "Motor_Velocidad":50
     }
   }
 
@@ -106,10 +112,37 @@ this.router.navigate(['main/mongo'])
       "Motor_Reversa" : false, 
       "Motor_Derecha" : false, 
       "Motor_Izquieda" : false, 
-      "Motor_Apagado" : true 
+      "Motor_Apagado" : true,
+      "Motor_Velocidad":0 
     }
   }
 
     this.auto.Movimiento(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
+  }
+
+  Off(_id: any){
+    const body = {
+      auto:_id,
+      estado:[
+        {
+          estado:false,
+        }
+      ]
+  }
+
+    this.auto.Enceder(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
+  }
+  
+  On(_id: any){
+    const body = {
+      auto:_id,
+      estado:[
+        {
+          estado:true,
+        }
+      ]
+  }
+
+    this.auto.Enceder(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
   }
 }

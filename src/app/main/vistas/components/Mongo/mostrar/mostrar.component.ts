@@ -29,7 +29,6 @@ export class MostrarComponent implements OnInit {
   leerlista(){
     this.auto.GetAutos().subscribe((data: any) =>{
       this.dataSource.data = data.autos!
-      console.log(data)
     });
   }
 
@@ -48,6 +47,12 @@ export class MostrarComponent implements OnInit {
   view(_id:any){
    this.router.navigateByUrl('main/controles/'+_id);
   }
-  
 
+  data(_id:any){
+    this.router.navigateByUrl('main/leds/'+_id);
+   }
+  
+   graficas(_id:any){
+    this.router.navigateByUrl('main/grafica/'+_id);
+   }
 }

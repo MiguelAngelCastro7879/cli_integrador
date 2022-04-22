@@ -18,7 +18,6 @@ export class VerComponent implements OnInit {
     this.service.getUser(this.data.id)
     .subscribe((res:any)=>{
       this.user = res.usuario!
-      console.log(res);
   })}
 
   closeDialog(){

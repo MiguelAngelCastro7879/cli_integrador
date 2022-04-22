@@ -20,7 +20,6 @@ export class CrearComponent implements OnInit {
   }
   Enviar(){
     this.peticion.CrearDatos(this.form.value).subscribe((Response:any)=>{
-      console.log(Response)
       setTimeout(() =>this.dialogRef.close(), 200)
     })
   }

@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   public onSubmit(): void {
     this.load = false;
     this._authService.login(this.user).subscribe(respuesta=>{
-      console.log(respuesta.access_token!.token)
       this._authService.setToken(respuesta.access_token!.token!)
       this._router.navigate(['/main/2']);
       alert(respuesta.mensaje!)

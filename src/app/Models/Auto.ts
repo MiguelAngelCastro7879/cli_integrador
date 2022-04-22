@@ -14,7 +14,13 @@ export interface Movil{
         nombre?: string;
 }
 
-export interface Led{
-    estado?:  string,
-    fecha?: Date;
+export interface Estado {
+    _id?:  string;
+    leds?: LED[];
 }
+
+export interface LED {
+    estado?: boolean;
+    fecha?:  Date;
+}
+

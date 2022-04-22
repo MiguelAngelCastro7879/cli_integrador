@@ -1,5 +1,5 @@
-import { AfterContentInit, AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,14 +7,13 @@ import { Chart, registerables } from 'chart.js';
 import { Subscription } from 'rxjs';
 import { Dato } from 'src/app/Models/Dato';
 import { SensoresService } from 'src/app/shared/services/sensores.service';
-import { CrearComponent } from './crear/crear.component';
 
 @Component({
-  selector: 'app-graficas',
-  templateUrl: './graficas.component.html',
-  styleUrls: ['./graficas.component.css']
+  selector: 'app-grafica',
+  templateUrl: './grafica.component.html',
+  styleUrls: ['./grafica.component.css']
 })
-export class GraficasComponent implements OnInit, AfterViewInit {
+export class GraficaComponent implements OnInit, AfterViewInit {
   
   displayedColumns: string[] = ['id', 'valor', 'acciones'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
@@ -86,13 +85,9 @@ export class GraficasComponent implements OnInit, AfterViewInit {
           }
       }
   });
+  console.log("ESTA ES LA DATA: ",this.dataSourceGrafica.data)
   }
 
-  open(){
-    this.dialog.open(CrearComponent,{
-      width:'40%',
-    });
-  }
 
   delete(id:number){
     this.peticion.borrar(id).subscribe((res:any)=>{

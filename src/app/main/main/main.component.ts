@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { delay, filter } from 'rxjs/operators';
@@ -25,7 +25,7 @@ interface ExampleFlatNode {
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
@@ -36,37 +36,11 @@ export class MainComponent implements OnInit {
     private _menuService: MenuService,
     private peticion: UsuariosService
     ) {
-      // this.dataSource.data = TREE_DATA;
     }
 
   panelOpenState = false;
   user: User = {}
   categorias : Categoria[] = [] 
-
-  // private _transformer = (node: Categoria, level: number) => {
-  //   return {
-  //     expandable: !!node.vistas && node.vistas.length > 0,
-  //     name: node.name,
-  //     level: level,
-  //   };
-  // };
-
-  // treeControl = new FlatTreeControl<ExampleFlatNode>(
-  //   node => node.level,
-  //   node => node.expandable,
-  // );
-
-  // treeFlattener = new MatTreeFlattener(
-  //   this._transformer,
-  //   node => node.level,
-  //   node => node.expandable,
-  //   node => node.children,
-  // );
-
-  // dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
-  // hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-
 
   ngOnInit(): void {
     this.getUser()
@@ -79,10 +53,10 @@ export class MainComponent implements OnInit {
       .pipe(delay(1))
       .subscribe((res:any) => {
         if (res.matches) {
-          this.sidenav.mode = 'over';
+          this.sidenav!.mode! = 'over';
           this.sidenav.close();
         } else {
-          this.sidenav.mode = 'side';
+          this.sidenav!.mode! = 'side';
           this.sidenav.open();
         }
       });
@@ -92,8 +66,8 @@ export class MainComponent implements OnInit {
         filter((e) => e instanceof NavigationEnd)
       )
       .subscribe(() => {
-        if (this.sidenav.mode === 'over') {
-          this.sidenav.close();
+        if (this.sidenav!.mode! === 'over') {
+          this.sidenav!.close();
         }
       });
   }

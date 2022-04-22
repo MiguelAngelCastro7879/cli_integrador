@@ -2,7 +2,7 @@ import { Token, User } from "./User";
 import { Categoria } from "./Categoria";
 import { sensor } from "./sensores";
 import { Dato } from "./Dato";
-import { Auto, Led, Movil } from "./Auto";
+import { Auto, Estado, Movil } from "./Auto";
 
 export interface Respuesta {
     mensaje?: string;
@@ -16,5 +16,5 @@ export interface Respuesta {
     sen?: sensor;
     autos?:     Movil[];
     auto?:     Movil[];
-    estados?:     Led[];
+    estados?: Estado[];
 }

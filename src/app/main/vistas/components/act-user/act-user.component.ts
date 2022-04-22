@@ -56,7 +56,6 @@ export class ActUserComponent implements OnInit {
   
   this.u.update(this.data.id,this.form.value)
   .subscribe((response: any)=>{
-    console.log(response);
     this.form.reset()
     setTimeout(() =>this.dialogRef.close(), 2000)
   },

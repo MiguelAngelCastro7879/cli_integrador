@@ -21,13 +21,19 @@ export class AutoService {
   Movimiento(info:any){
     return this.http.post<Respuesta>(rutas.movimiento, info, {headers:this.header})
   }
+  // GetAutos(){
+    //   return this.http.get<Respuesta>(rutas.obtener, {headers:this.header})
+    // }
   GetAutos(){
-    return this.http.get<Respuesta>(rutas.obtener, {headers:this.header})
+    return this.http.post<Respuesta>(rutas.obtenerAutosUsuario, {headers:this.header})
   }
   GetAuto(_id:any){
     return this.http.get<Respuesta>(rutas.Obtener+_id,{headers:this.header})
   }
-  GetLeds(){
-    return this.http.post<Respuesta>(rutas.leds, {headers:this.header})
+  GetLeds(_id:any){
+    return this.http.post<Respuesta>(rutas.leds,{auto: _id}, {headers:this.header})
+  }
+  Enceder(_id:any){
+    return this.http.post<Respuesta>(rutas.led,{auto: _id}, {headers:this.header})
   }
 }
