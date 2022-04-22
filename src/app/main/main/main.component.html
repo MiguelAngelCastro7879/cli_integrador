@@ -64,6 +64,7 @@
             <mat-list-item>
             <a mat-menu-item routerLink="sensores"><mat-icon mat-list-icon>widgets</mat-icon>Datos Sensores</a>
             <a mat-menu-item routerLink="vistas"><mat-icon mat-list-icon>person</mat-icon>Usuarios</a>
+            <a mat-menu-item routerLink="mongo"><mat-icon mat-list-icon>directions_car</mat-icon>Carrito</a>
             </mat-list-item>
           </mat-menu>
         </span>
@@ -71,10 +72,6 @@
       <button mat-button class="menu-button" routerLink="graficas">
         <mat-icon>timeline</mat-icon>
         <span>Graphics</span>
-      </button>
-      <button mat-button class="menu-button" routerLink="controles">
-        <mat-icon>gamepad</mat-icon>
-        <span>Controls</span>
       </button>
       <button mat-button class="menu-button" (click)="logout()">
         <mat-icon>logout</mat-icon>

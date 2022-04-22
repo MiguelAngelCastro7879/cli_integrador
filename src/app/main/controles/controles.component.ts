@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Movil } from 'src/app/Models/Auto';
+import { AutoService } from 'src/app/shared/services/auto.service';
 
 @Component({
   selector: 'app-controles',
@@ -7,9 +10,106 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlesComponent implements OnInit {
 
-  constructor() { }
+  public movil: Movil={
+    _id:'',
+    nombre:''
+  }
+  
+  constructor(private auto:AutoService,private activatedRouter: ActivatedRoute, private router:Router) {
+    this.activatedRouter.params.subscribe(
+      params=>{
+        this.getauto(params['id'])
+      })
+   }
 
   ngOnInit(): void {
+    this.getauto(this.movil._id)
   }
 
+  getauto(_id: any){
+    this.movil._id= _id
+    this.auto.GetAuto(_id).subscribe(
+      respuesta=>{
+        this.movil = respuesta.auto![0]
+        console.log(respuesta)
+      })
+}
+
+regresar(){
+this.router.navigate(['main/mongo'])
+}
+
+  Adelante(_id: any){
+    const body = {
+      auto:_id,
+      valores:{
+        "Motor_Delante" : true, 
+        "Motor_Reversa" : false, 
+        "Motor_Derecha" : false, 
+        "Motor_Izquieda" : false, 
+        "Motor_Apagado" : false
+      }
+    }
+
+    this.auto.Movimiento(body).subscribe(datos => {console.log(datos),this.ngOnInit()})
+  }
+
+  Reversa(_id: any){
+    const body = {
+      auto:_id,
+      valores:{
+      "Motor_Delante" : false, 
+      "Motor_Reversa" : true, 
+      "Motor_Derecha" : false, 
+      "Motor_Izquieda" : false, 
+      "Motor_Apagado" : false 
+    }
+  }
+
+    this.auto.Movimiento(body).subscribe(datos => {console.log(datos),this.ngOnInit()})
+  }
+  Izquierda(_id: any){
+    const body = {
+      auto:_id,
+      valores:{
+      "Motor_Delante" : false, 
+      "Motor_Reversa" : false, 
+      "Motor_Derecha" : false, 
+      "Motor_Izquieda" : true, 
+      "Motor_Apagado" : false 
+    }
+  }
+
+    this.auto.Movimiento(body).subscribe(datos => {console.log(datos),this.ngOnInit()})
+  }
+
+  Derecha(_id: any){
+    const body = {
+      auto:_id,
+      valores:{
+      "Motor_Delante" : false, 
+      "Motor_Reversa" : false, 
+      "Motor_Derecha" : true, 
+      "Motor_Izquieda" : false, 
+      "Motor_Apagado" : false 
+    }
+  }
+
+    this.auto.Movimiento(body).subscribe(datos => {console.log(datos),this.ngOnInit()})
+  }
+
+  Stop(_id: any){
+    const body = {
+      auto:_id,
+      valores:{
+      "Motor_Delante" : false, 
+      "Motor_Reversa" : false, 
+      "Motor_Derecha" : false, 
+      "Motor_Izquieda" : false, 
+      "Motor_Apagado" : true 
+    }
+  }
+
+    this.auto.Movimiento(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
+  }
 }

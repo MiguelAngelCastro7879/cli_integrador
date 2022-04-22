@@ -18,6 +18,8 @@ import { GraficasComponent } from './graficas/graficas.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ControlesComponent } from './controles/controles.component';
 import { CrearComponent } from './graficas/crear/crear.component';
+import { MostrarComponent } from './vistas/components/Mongo/mostrar/mostrar.component';
+import { LedsComponent } from './vistas/components/Mongo/leds/leds.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { CrearComponent } from './graficas/crear/crear.component';
     UserStatusComponent,
     GraficasComponent,
     ControlesComponent,
-    CrearComponent
+    CrearComponent,
+    MostrarComponent,
+    LedsComponent
   ],
   imports: [
     CommonModule,

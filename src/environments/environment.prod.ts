@@ -13,4 +13,8 @@ export const rutas = {
   sensor:`${environment.urlbase}/sensores`,
   datos:`${environment.urlbase}/dato`,
   borrar:`${environment.urlbase}/dato/`,
+  movimiento:`${environment.urlbase}/auto/set/movimiento`,
+  obtener:`${environment.urlbase}/autos`,
+  Obtener:`${environment.urlbase}/autos/`,
+  leds:`${environment.urlbase}/auto/get/leds`,
 }

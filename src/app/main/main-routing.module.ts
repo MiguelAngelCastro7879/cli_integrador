@@ -6,6 +6,8 @@ import { VistasComponent } from './vistas/vistas.component';
 import { VerSensComponent } from './vistas/components/Sens/ver-sens/ver-sens.component';
 import { GraficasComponent } from './graficas/graficas.component';
 import { ControlesComponent } from './controles/controles.component';
+import { MostrarComponent } from './vistas/components/Mongo/mostrar/mostrar.component';
+import { LedsComponent } from './vistas/components/Mongo/leds/leds.component';
 
 const routes: Routes = [
   {
@@ -29,8 +31,16 @@ const routes: Routes = [
         component:GraficasComponent
       },
       {
-        path:'controles',
+        path:'controles/:id',
         component:ControlesComponent
+      },
+      {
+        path:'mongo',
+        component:MostrarComponent,
+      },
+      {
+        path:'leds',
+        component:LedsComponent,
       }
     ]
   },
