@@ -15,6 +15,7 @@ export class ControlesComponent implements OnInit {
     nombre:''
   }
 
+  estado=true
   constructor(private auto:AutoService,private activatedRouter: ActivatedRoute, private router:Router) {
     this.activatedRouter.params.subscribe(
       params=>{
@@ -121,6 +122,7 @@ mover(){
   }
 
   Off(_id: any){
+    this.estado = false
     const body = {
       auto:_id,
       estado:[
@@ -132,8 +134,9 @@ mover(){
 
     this.auto.Enceder(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
   }
-  
+
   On(_id: any){
+    this.estado = true
     const body = {
       auto:_id,
       estado:[
@@ -144,5 +147,14 @@ mover(){
   }
 
     this.auto.Enceder(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
+  }
+  onoff(_id:any){
+    if(this.estado){
+      this.On(this.movil._id)
+      console.log('Encendido')
+    }else if(!this.estado){
+      this.Off(this.movil._id)
+      console.log('Apagado')
+    }
   }
 }
