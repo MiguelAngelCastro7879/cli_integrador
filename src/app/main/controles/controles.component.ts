@@ -125,11 +125,10 @@ mover(){
     this.estado = false
     const body = {
       auto:_id,
-      estado:[
-        {
+      valores:{
           estado:false,
         }
-      ]
+      
   }
 
     this.auto.Enceder(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
@@ -139,11 +138,10 @@ mover(){
     this.estado = true
     const body = {
       auto:_id,
-      estado:[
-        {
+      valores:{
           estado:true,
         }
-      ]
+      
   }
 
     this.auto.Enceder(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
@@ -156,5 +154,6 @@ mover(){
       this.Off(this.movil._id)
       console.log('Apagado')
     }
+    this.estado = !this.estado 
   }
 }

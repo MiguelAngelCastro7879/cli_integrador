@@ -33,7 +33,7 @@ export class AutoService {
   GetLeds(_id:any){
     return this.http.post<Respuesta>(rutas.leds,{auto: _id}, {headers:this.header})
   }
-  Enceder(_id:any){
-    return this.http.post<Respuesta>(rutas.led,{auto: _id}, {headers:this.header})
+  Enceder(body:any){
+    return this.http.post<Respuesta>(rutas.led, body , {headers:this.header})
   }
 }
