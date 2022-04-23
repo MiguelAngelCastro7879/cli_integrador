@@ -24,3 +24,7 @@ export interface LED {
     fecha?:  Date;
 }
 
+export interface Temperatura {
+    valor?: number;
+}
+

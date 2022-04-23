@@ -18,11 +18,11 @@ export class CrearComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  Enviar(){
-    this.peticion.CrearDatos(this.form.value).subscribe((Response:any)=>{
-      setTimeout(() =>this.dialogRef.close(), 200)
-    })
-  }
+  // Enviar(){
+  //   this.peticion.CrearDatos(this.form.value).subscribe((Response:any)=>{
+  //     setTimeout(() =>this.dialogRef.close(), 200)
+  //   })
+  // }
   closeDialog(){
     this.dialogRef.close()
   }

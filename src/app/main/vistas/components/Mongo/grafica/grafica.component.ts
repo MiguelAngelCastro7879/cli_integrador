@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Chart, registerables } from 'chart.js';
 import { Subscription } from 'rxjs';
-import { Dato } from 'src/app/Models/Dato';
+import { Movil, Temperatura } from 'src/app/Models/Auto';
 import { SensoresService } from 'src/app/shared/services/sensores.service';
 
 @Component({
@@ -13,14 +13,15 @@ import { SensoresService } from 'src/app/shared/services/sensores.service';
   templateUrl: './grafica.component.html',
   styleUrls: ['./grafica.component.css']
 })
-export class GraficaComponent implements OnInit, AfterViewInit {
+export class GraficaComponent implements OnInit {
   
-  displayedColumns: string[] = ['id', 'valor', 'acciones'];
+  displayedColumns: string[] = [ 'valor', 'acciones'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
-  datos: Dato[] = []
-  dataSource = new MatTableDataSource<Dato>(this.datos)
+  datos!:Temperatura[]
+  movil:Movil={}
+  dataSource = new MatTableDataSource<Temperatura>(this.datos)
   sus!: Subscription
-  dataSourceGrafica = new MatTableDataSource<Dato>(this.datos)
+  dataSourceGrafica = new MatTableDataSource<Temperatura>(this.datos)
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,20 +31,21 @@ export class GraficaComponent implements OnInit, AfterViewInit {
   
   
   ngOnInit() {
-    this.leerlista();
+    this.leerlista(this.movil._id);
     this.sus = this.peticion.refresh$.subscribe(()=>{
-      this.leerlista()
+      this.leerlista(this.movil._id)
     })
   }
-  leerlista(){
-    this.peticion.Datos().subscribe({
+  leerlista(id:any){
+    this.peticion.Datos(id).subscribe({
       next:(data)=>{
-        this.dataSource.data = data.Valor!
+        this.dataSource.data = data.temperatura![0]
+        console.log("peticion respuesta: ", data.temperatura!)
         this.dataSourceGrafica.data = []
-        data.Valor!.forEach((valores: any) => {
-          this.dataSourceGrafica.data.push(valores.valor!)
+        data.temperatura!.forEach((valores: any) => {
+          this.dataSourceGrafica.data.push(valores.temperatura!)
         });
-        // console.log("peticion respuesta: ", data.Valor!)
+        console.log("peticion respuesta: ", data.temperatura!)
       },
       complete:()=>{
         if(this.chart instanceof Chart){
@@ -85,15 +87,12 @@ export class GraficaComponent implements OnInit, AfterViewInit {
           }
       }
   });
-  console.log("ESTA ES LA DATA: ",this.dataSourceGrafica.data)
   }
-
 
   delete(id:number){
     this.peticion.borrar(id).subscribe((res:any)=>{
       this.datos = res.mensaje!
-      this.leerlista()
+      this.leerlista(this.movil._id)
   })
 }
-
 }
