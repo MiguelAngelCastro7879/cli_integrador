@@ -21,6 +21,7 @@ import { CrearComponent } from './graficas/crear/crear.component';
 import { MostrarComponent } from './vistas/components/Mongo/mostrar/mostrar.component';
 import { LedsComponent } from './vistas/components/Mongo/leds/leds.component';
 import { GraficaComponent } from './vistas/components/Mongo/grafica/grafica.component';
+import { CrearVistaComponent } from './vistas/components/Mongo/crear-vista/crear-vista.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { GraficaComponent } from './vistas/components/Mongo/grafica/grafica.comp
     CrearComponent,
     MostrarComponent,
     LedsComponent,
-    GraficaComponent
+    GraficaComponent,
+    CrearVistaComponent
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
-import { Auto } from 'src/app/Models/Auto';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { Auto, Movil } from 'src/app/Models/Auto';
 import { Respuesta } from 'src/app/Models/Respuesta';
 import { rutas } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class AutoService {
   // GetAutos(){
     //   return this.http.get<Respuesta>(rutas.obtener, {headers:this.header})
     // }
+   
   GetAutos(){
     return this.http.post<Respuesta>(rutas.obtenerAutosUsuario, {headers:this.header})
   }
@@ -36,4 +38,17 @@ export class AutoService {
   Enceder(_id:any){
     return this.http.post<Respuesta>(rutas.led,{auto: _id}, {headers:this.header})
   }
+
+  postAutos(info: Movil){
+    return this.http.post<Respuesta>(rutas.crearAuto, info)
+  }
+    
 }
+function successDialog(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
+function errorMessage(arg0: any) {
+  throw new Error('Function not implemented.');
+}
+

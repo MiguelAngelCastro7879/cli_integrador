@@ -14,3 +14,11 @@
     .example-margin {
       margin: 0 10px;
     }
+
+.boton{
+  width: 100%;
+  text-align: left;
+}
+.filtro{
+  width: max-content;
+}

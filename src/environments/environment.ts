@@ -24,6 +24,7 @@ export const rutas = {
   Obtener:`${environment.urlbase}/autos/`,
   leds:`${environment.urlbase}/auto/get/leds`,
   led:`${environment.urlbase}/auto/last/leds`,
+  crearAuto: `${environment.urlbase}/autos`
 }
  
 /*

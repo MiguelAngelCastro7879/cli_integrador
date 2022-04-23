@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Auto, Movil } from 'src/app/Models/Auto';
 import { AutoService } from 'src/app/shared/services/auto.service';
+import { CrearVistaComponent } from '../crear-vista/crear-vista.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-mostrar',
@@ -21,7 +23,7 @@ export class MostrarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private auto: AutoService,private router: Router) {}
+  constructor(private auto: AutoService,private router: Router,public dialog:MatDialog) {}
 
   ngOnInit() {
     this.leerlista()
@@ -30,6 +32,7 @@ export class MostrarComponent implements OnInit {
     this.auto.GetAutos().subscribe((data: any) =>{
       this.dataSource.data = data.autos!
     });
+    
   }
 
   ngAfterViewInit() {
@@ -40,6 +43,11 @@ export class MostrarComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CrearVistaComponent, {
+      width: '400px',
+    });
   }
 
 

@@ -1,0 +1,36 @@
+<div class="contenedor">
+    <h1>Registrar auto</h1>
+    <div mat-dialog-content>
+      
+        <form #loginForm="ngForm" [formGroup]="formGroup">
+            <mat-form-field class="form">
+              <input matInput type="text" id="codigo_serie" name="codigo_serie" formControlName="codigo_serie" placeholder="Codigo de serie" /> 
+              <mat-error class="invalid-feedback" *ngIf="codigo_serie!.invalid && (codigo_serie!.dirty || codigo_serie!.touched)">
+                <div *ngIf="codigo_serie!.errors?.['minlength']">
+                  Introduzca codigo con 5 caracteres min
+                </div>
+                <div *ngIf="codigo_serie!.errors?.['required']">
+                  Introduzca codigo de serie
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <br><br>
+        <mat-form-field class="form">
+        <input matInput type="text" id="nombre" name="nombre" formControlName="nombre" placeholder="Nombre del auto" /> 
+        <mat-error class="invalid-feedback" *ngIf="nombre!.invalid && (nombre!.dirty || nombre!.touched)">
+          <div *ngIf="nombre!.errors?.['minlength']">
+            Introduzca el nombre del auto con 3 caracteres minimo 
+          </div>
+          <div *ngIf="nombre!.errors?.['required']">
+            Introduzca un nombre para la vista por favor
+          </div>
+        </mat-error>
+      </mat-form-field>
+          <br><br>
+      </form>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid" (click)="onSubmit()">Registrar</button>
+    </div>
+  </div>
