@@ -14,10 +14,8 @@ import { SenStatusComponent } from './vistas/components/Sens/sen-status/sen-stat
 import { UserStatusComponent } from './vistas/components/user-status/user-status.component';
 import { AppComponent } from '../app.component';
 import { NgChartsModule } from 'ng2-charts';
-import { GraficasComponent } from './graficas/graficas.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ControlesComponent } from './controles/controles.component';
-import { CrearComponent } from './graficas/crear/crear.component';
 import { MostrarComponent } from './vistas/components/Mongo/mostrar/mostrar.component';
 import { LedsComponent } from './vistas/components/Mongo/leds/leds.component';
 import { GraficaComponent } from './vistas/components/Mongo/grafica/grafica.component';
@@ -35,9 +33,7 @@ import { CrearVistaComponent } from './vistas/components/Mongo/crear-vista/crear
     ActuaSensComponent,
     SenStatusComponent,
     UserStatusComponent,
-    GraficasComponent,
     ControlesComponent,
-    CrearComponent,
     MostrarComponent,
     LedsComponent,
     GraficaComponent,

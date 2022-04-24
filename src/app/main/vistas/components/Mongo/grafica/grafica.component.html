@@ -1,11 +1,6 @@
 <div class="derecha">
     <table mat-table  [dataSource]="dataSource" class="mat-elevation-z8">
-  
-        <ng-container matColumnDef="_id" matSort>
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero </th>
-            <td mat-cell *matCellDef="let element"> {{element._id}} </td>
-        </ng-container>
-      
+
         <ng-container matColumnDef="valor">
             <th mat-header-cell *matHeaderCellDef> Valor </th>
             <td mat-cell *matCellDef="let element"> {{element.valor}} </td>

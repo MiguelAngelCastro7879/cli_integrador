@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  urlbase:'http://127.0.0.1:3333/api/v1'
+  // urlbase:'http://127.0.0.1:3333/api/v1'
+  urlbase:'http://3.145.197.253:3333/api/v1'
 };
 export const rutas = {
   login:`${environment.urlbase}/login`,
@@ -17,4 +18,6 @@ export const rutas = {
   obtener:`${environment.urlbase}/autos`,
   Obtener:`${environment.urlbase}/autos/`,
   leds:`${environment.urlbase}/auto/get/leds`,
+  crearAuto: `${environment.urlbase}/autos`,
+  valores:`${environment.urlbase}/auto/set/valores`
 }

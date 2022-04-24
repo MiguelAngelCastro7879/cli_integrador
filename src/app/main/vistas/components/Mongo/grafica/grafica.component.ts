@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 import { Subscription } from 'rxjs';
 import { Movil, Temperatura } from 'src/app/Models/Auto';
@@ -26,26 +27,38 @@ export class GraficaComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private peticion: SensoresService, private readonly dialog:MatDialog) {Chart.register(... registerables) }
+  constructor(private peticion: SensoresService, private readonly dialog:MatDialog,private activatedRouter: ActivatedRoute) {Chart.register(... registerables) 
+    this.activatedRouter.params.subscribe(
+      params=>{
+        this.getauto(params['id'])
+      })}
   chart:any = []
-  
-  
+
   ngOnInit() {
     this.leerlista(this.movil._id);
     this.sus = this.peticion.refresh$.subscribe(()=>{
       this.leerlista(this.movil._id)
     })
   }
+
+  getauto(_id: any){
+    this.movil._id= _id
+    this.peticion.Datos(_id).subscribe(
+      respuesta=>{
+        this.movil = respuesta.auto![0]
+      })
+}
+
   leerlista(id:any){
     this.peticion.Datos(id).subscribe({
       next:(data)=>{
-        this.dataSource.data = data.temperatura![0]
-        console.log("peticion respuesta: ", data.temperatura!)
+        this.dataSource.data = data.auto![0]
+        console.log("peticion respuesta: ", data.auto!)
         this.dataSourceGrafica.data = []
-        data.temperatura!.forEach((valores: any) => {
-          this.dataSourceGrafica.data.push(valores.temperatura!)
+        data.auto![0].temperatura!.forEach((valores: any) => {
+          this.dataSourceGrafica.data.push(valores.valor!)
+          console.log("peticion respuesta: ", valores.valor!)
         });
-        console.log("peticion respuesta: ", data.temperatura!)
       },
       complete:()=>{
         if(this.chart instanceof Chart){
