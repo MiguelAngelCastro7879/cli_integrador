@@ -16,7 +16,7 @@ import { SensoresService } from 'src/app/shared/services/sensores.service';
 })
 export class GraficaComponent implements OnInit {
   
-  displayedColumns: string[] = [ 'valor', 'acciones'];
+  displayedColumns: string[] = [ 'valor', 'fecha'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   datos!:Temperatura[]
   movil:Movil={}
@@ -52,8 +52,8 @@ export class GraficaComponent implements OnInit {
   leerlista(id:any){
     this.peticion.Datos(id).subscribe({
       next:(data)=>{
-        this.dataSource.data = data.auto![0]
-        console.log("peticion respuesta: ", data.auto!)
+        this.dataSource.data = data.auto![0].temperatura!
+        console.log("peticion respuesta: ", data.auto![0].temperatura!)
         this.dataSourceGrafica.data = []
         data.auto![0].temperatura!.forEach((valores: any) => {
           this.dataSourceGrafica.data.push(valores.valor!)
