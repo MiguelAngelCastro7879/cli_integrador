@@ -9,6 +9,7 @@ import { ControlesComponent } from './controles/controles.component';
 import { MostrarComponent } from './vistas/components/Mongo/mostrar/mostrar.component';
 import { LedsComponent } from './vistas/components/Mongo/leds/leds.component';
 import { GraficaComponent } from './vistas/components/Mongo/grafica/grafica.component';
+import { AdminCarrosComponent } from './Admin/admin-carros/admin-carros.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path:'grafica/:id',
         component:GraficaComponent,
+      },
+      {
+        path:'adminCars',
+        component:AdminCarrosComponent
       }
     ]
   },

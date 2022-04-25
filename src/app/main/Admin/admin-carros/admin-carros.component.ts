@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Auto, Movil } from 'src/app/Models/Auto';
+import { Router } from '@angular/router';
+import { Auto } from 'src/app/Models/Auto';
 import { AutoService } from 'src/app/shared/services/auto.service';
-import { CrearVistaComponent } from '../crear-vista/crear-vista.component';
-import { MatDialog } from '@angular/material/dialog';
+import { CrearVistaComponent } from '../../vistas/components/Mongo/crear-vista/crear-vista.component';
 
 @Component({
-  selector: 'app-mostrar',
-  templateUrl: './mostrar.component.html',
-  styleUrls: ['./mostrar.component.css']
+  selector: 'app-admin-carros',
+  templateUrl: './admin-carros.component.html',
+  styleUrls: ['./admin-carros.component.css']
 })
-export class MostrarComponent implements OnInit {
+export class AdminCarrosComponent implements OnInit {
 
   autos: Auto[] = []
 
@@ -61,4 +61,5 @@ export class MostrarComponent implements OnInit {
    graficas(_id:any){
     this.router.navigateByUrl('main/grafica/'+_id);
    }
+
 }

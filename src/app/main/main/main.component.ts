@@ -4,13 +4,14 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { User } from 'src/app/Models/User';
+import { User, Usuario } from 'src/app/Models/User';
 import { MenuService } from './menu.service';
 import { Categoria } from 'src/app/Models/Categoria';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { Vista } from 'src/app/Models/Vista';
 import { UsuariosService } from 'src/app/shared/services/usuarios.service';
+import { Role } from 'src/app/Models/Role';
 
 
 /** Flat node with expandable and level information */
@@ -41,11 +42,13 @@ export class MainComponent implements OnInit, AfterViewInit {
   panelOpenState = false;
   user: User = {}
   categorias : Categoria[] = [] 
+  usuario: Usuario = {}
 
   ngOnInit(): void {
     this.getUser()
     this.getVistas()
   }
+
 
   ngAfterViewInit() {
     this.observer
@@ -71,6 +74,7 @@ export class MainComponent implements OnInit, AfterViewInit {
         }
       });
   }
+
   logout(){
     this.peticion.logout().subscribe(
       respuesta =>{
@@ -81,7 +85,14 @@ export class MainComponent implements OnInit, AfterViewInit {
         alert(error.error.error)
       })
   }
-
+ 
+  
+  getRol(){
+    this._authService.getUser().subscribe(respuesta=>{
+      this.usuario = respuesta.user! 
+    })
+  }
+  
   getUser(){
     this._authService.getUser().subscribe(respuesta=>{
       this.user = respuesta.usuario! 

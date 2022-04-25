@@ -65,6 +65,8 @@
             <a mat-menu-item routerLink="sensores"><mat-icon mat-list-icon>widgets</mat-icon>Datos Sensores</a>
             <a mat-menu-item routerLink="vistas"><mat-icon mat-list-icon>person</mat-icon>Usuarios</a>
             <a mat-menu-item routerLink="mongo"><mat-icon mat-list-icon>directions_car</mat-icon>Carrito</a>
+            <a mat-menu-item routerLink="adminCars" *ngIf="usuario.rol == 'ADMIN'; "   ><mat-icon mat-list-icon>directions_car</mat-icon>Carritos</a>
+
             </mat-list-item>
           </mat-menu>
         </span>

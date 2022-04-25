@@ -1,4 +1,4 @@
-import { Token, User } from "./User";
+import { Token, User, Usuario } from "./User";
 import { Categoria } from "./Categoria";
 import { sensor } from "./sensores";
 import { Auto, Estado, Movil, Temperatura } from "./Auto";
@@ -15,4 +15,6 @@ export interface Respuesta {
     auto?:     Movil[];
     estados?: Estado[];
     temperatura?: Temperatura[];
+    user?: Usuario;
+
 }

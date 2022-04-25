@@ -8,3 +8,9 @@ export interface Token {
     token?: string;
     refreshToken?:string;
 }
+export interface Usuario {
+    username?: string;
+    password?: string;
+    email?:string;
+    rol?: string;
+}

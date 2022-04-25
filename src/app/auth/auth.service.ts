@@ -29,6 +29,9 @@ export class AuthService {
     return this.http.get<Respuesta>(rutas.token_validacion)
   }
 
+
+
+
   setToken(token: string): void {
     this._cookieService.set('token',token,4,'/')
   }
