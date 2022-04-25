@@ -21,50 +21,19 @@
       <p class="designation">{{user.email!}}</p>
   
       <mat-divider></mat-divider>
-      <!-- routerLink="/home" -->
-      
-      <!-- <ul id="menu">
-        <li *ngFor="let categoria of categorias" mat-button class="menu-button">
-          <mat-icon>home</mat-icon>
-          <span>{{categoria.nombre!}}</span>
-          <ol>
-            <li *ngFor="let vista of categoria.vistas!" mat-button class="menu-button">
-              <button *ngFor="let vista of categoria.vistas!" mat-button class="menu-button" >
-                <mat-icon>help</mat-icon>
-                <span>{{vista.nombre!}}</span>
-              </button>
-            </li>
-          </ol>
-        </li>
-      </ul> -->
-
-      <!-- <button mat-button class="menu-button" routerLink="/home">
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
-      </button>
-      <button mat-button class="menu-button" routerLink="/profile">
-        <mat-icon>person</mat-icon>
-        <span>Profile</span>
-      </button>
-      <button mat-button class="menu-button" routerLink="/about">
-        <mat-icon>info</mat-icon>
-        <span>About</span>
-      </button> -->
-  
-      <mat-divider></mat-divider>
   
       <button mat-button class="menu-button" routerLink="2">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </button>
-      <button mat-button class="menu-button">
+      <button at-menu-item [matMenuTriggerFor]="subMenu" mat-button class="menu-button">
         <mat-icon>important_devices</mat-icon>
-        <span at-menu-item [matMenuTriggerFor]="subMenu">Views
+        <span>Views
           <mat-menu #subMenu="matMenu">
             <mat-list-item>
-            <a mat-menu-item routerLink="sensores"><mat-icon mat-list-icon>widgets</mat-icon>Datos Sensores</a>
-            <a mat-menu-item routerLink="vistas"><mat-icon mat-list-icon>person</mat-icon>Usuarios</a>
-            <a mat-menu-item routerLink="mongo"><mat-icon mat-list-icon>directions_car</mat-icon>Carrito</a>
+            <button mat-menu-item routerLink="sensores"><mat-icon mat-list-icon>widgets</mat-icon>Datos Sensores</button>
+            <button mat-menu-item routerLink="vistas"><mat-icon mat-list-icon>person</mat-icon>Usuarios</button>
+            <button mat-menu-item routerLink="mongo"><mat-icon mat-list-icon>directions_car</mat-icon>Carrito</button>
             </mat-list-item>
           </mat-menu>
         </span>
