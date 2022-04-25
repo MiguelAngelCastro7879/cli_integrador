@@ -14,9 +14,9 @@ import { SensoresService } from 'src/app/shared/services/sensores.service';
   templateUrl: './grafica.component.html',
   styleUrls: ['./grafica.component.css']
 })
-export class GraficaComponent implements OnInit, OnDestroy {
-
-  displayedColumns: string[] = ['valor', 'acciones'];
+export class GraficaComponent implements OnInit {
+  
+  displayedColumns: string[] = [ 'valor', 'fecha'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   datos!: Temperatura[]
   movil: Movil = {}
