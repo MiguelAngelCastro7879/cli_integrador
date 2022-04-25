@@ -16,8 +16,9 @@ export const rutas = {
   borrar:`${environment.urlbase}/dato/`,
   movimiento:`${environment.urlbase}/auto/set/movimiento`,
   obtener:`${environment.urlbase}/autos`,
+  obtenerAutosUsuario:`${environment.urlbase}/usuario/autos`,
   Obtener:`${environment.urlbase}/autos/`,
   leds:`${environment.urlbase}/auto/get/leds`,
+  led:`${environment.urlbase}/auto/last/leds`,
   crearAuto: `${environment.urlbase}/autos`,
-  valores:`${environment.urlbase}/auto/set/valores`
 }
