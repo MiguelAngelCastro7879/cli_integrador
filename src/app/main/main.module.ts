@@ -28,7 +28,7 @@ import { CrearVistaComponent } from './vistas/components/Mongo/crear-vista/crear
     VistasComponent,
     ActUserComponent,
     VerComponent,
-    VistasComponent,
+
     VerSensComponent,
     ActuaSensComponent,
     SenStatusComponent,
