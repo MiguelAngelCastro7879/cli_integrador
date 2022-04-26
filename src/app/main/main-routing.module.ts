@@ -49,14 +49,11 @@ const routes: Routes = [
       {
         path:'grafica/:id',
         component:GraficaComponent,
-<<<<<<< HEAD
       },
       {
         path:'adminCars',
-        component:AdminCarrosComponent
-=======
+        component:AdminCarrosComponent,
         canActivateChild:[AuthGuardGuard]
->>>>>>> d2930a93fb0e10e2e5d4a080246d87ccfae9d05e
       }
     ]
   },
