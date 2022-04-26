@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit, OnDestroy {
   public loginValid = true;
   public user :User ={}
+  isDisabled=false
 
   // private readonly returnUrl: string;
   public load: boolean = true;
@@ -41,6 +42,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     this._authService.register(this.user).subscribe(respuesta=>{
         this._authService.login(this.user).subscribe(respuesta=>{
+          this.isDisabled = true;
           this._authService.setToken(respuesta.access_token!.token!)
           this._router.navigate(['/main/2']);
           alert('Sesion iniciada')

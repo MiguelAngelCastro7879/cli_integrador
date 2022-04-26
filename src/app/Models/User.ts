@@ -2,6 +2,7 @@ export interface User {
     username?: string;
     password?: string;
     email?:string;
+    rol?: string;
 }
 export interface Token {
     type?: string;
@@ -12,5 +13,4 @@ export interface Usuario {
     username?: string;
     password?: string;
     email?:string;
-    rol?: string;
 }

@@ -53,7 +53,7 @@
           </mat-form-field>
           <br>
           
-          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.form.valid">Registrate</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.form.valid" [disabled]="isDisabled">Registrate</button>
         </form>
         <br>
         <a href="/auth/login" class="registrate" >¿Ya tienes cuenta? Inicia sesión</a>

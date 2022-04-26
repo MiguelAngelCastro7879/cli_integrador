@@ -11,6 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ActUserComponent implements OnInit {
 
   hide = true;
+  isDisabled=false
   actionBtn : string = "Save"
   form = this.fb.group({
     username:['', {
@@ -18,13 +19,7 @@ export class ActUserComponent implements OnInit {
     }],
     email: ['', {
       validators: [Validators.required, Validators.email],
-    }],
-    password:['',{
-      validators:[Validators.required, Validators.minLength(8)],
     }]
-    // roles_id:[4,{
-    //   validators:[Validators.required],
-    // }]
   })
 
   error=false
@@ -36,8 +31,6 @@ export class ActUserComponent implements OnInit {
       this.actionBtn = "Update"
       this.form.controls['username'].setValue(this.data.username)
       this.form.controls['email'].setValue(this.data.email)
-      this.form.controls['password'].setValue(this.data.password)
-      // this.form.controls['roles_id'].setValue(this.data.roles_id)
     }
   }
 
@@ -56,8 +49,10 @@ export class ActUserComponent implements OnInit {
   
   this.u.update(this.data.id,this.form.value)
   .subscribe((response: any)=>{
+    this.isDisabled = true;
     this.form.reset()
-    setTimeout(() =>this.dialogRef.close(), 2000)
+    console.log(response)
+    setTimeout(() =>this.dialogRef.close(), 1500)
   },
   error=>{
     this.error = true

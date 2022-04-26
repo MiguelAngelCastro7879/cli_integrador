@@ -32,7 +32,7 @@ export class SensoresService
     return this.http.get<Respuesta>(rutas.sensor+'/'+id, {headers:this.header})
   }
   Datos(_id:any): Observable<any>{
-    return this.http.post<Respuesta>(rutas.valores,{auto: _id},{headers:this.header})
+    return this.http.get<Respuesta>(rutas.Obtener+_id,{headers:this.header})
   }
   borrar(id:any){
     return this.http.delete<Respuesta>(rutas.borrar+id, {headers:this.header})

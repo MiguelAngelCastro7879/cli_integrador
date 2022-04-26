@@ -18,7 +18,15 @@
 
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-        <td mat-cell *matCellDef="let element" > {{element.status}} </td>
+        <td mat-cell *matCellDef="let element" > 
+          <span style="color: green" *ngIf="element.status">
+            <mat-icon>check</mat-icon>
+            
+          </span>
+          <span style="color: red" *ngIf="!element.status">
+            <mat-icon>close</mat-icon>
+          </span>
+        </td>
       </ng-container>
   
         <ng-container matColumnDef="acciones">
@@ -30,11 +38,8 @@
           <a class="pointer" style="color: rgb(0, 13, 86);" matTooltip="Editar Usuario" (click)="open(row)">
             <mat-icon>edit</mat-icon>
           </a>
-          <a class="pointer" *ngIf="row.status" style="color: black;" matTooltip="Status Usuario" (click)="status(row)">
-            <mat-icon> check_box</mat-icon>
-          </a>
-          <a class="pointer" *ngIf="!row.status" style="color: black;" matTooltip="Status Usuario" (click)="status(row)" >
-            <mat-icon>check_box_outline_blank</mat-icon>
+          <a class="pointer" style="color: black;" matTooltip="Status Usuario" (click)="status(row)">
+            <mat-icon>how_to_reg</mat-icon>
           </a>
         </td>
         </ng-container>
@@ -47,10 +52,3 @@
     <mat-paginator [pageSizeOptions]="[ 5, 10, 25, 100 ]" aria-label="Select page of users"></mat-paginator>
     
   </div>
-  
-  
-  
-
-
-
-

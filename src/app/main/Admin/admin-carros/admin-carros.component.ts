@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Auto } from 'src/app/Models/Auto';
+import { Auto, Movil } from 'src/app/Models/Auto';
 import { AutoService } from 'src/app/shared/services/auto.service';
 import { CrearVistaComponent } from '../../vistas/components/Mongo/crear-vista/crear-vista.component';
 
@@ -16,6 +16,7 @@ import { CrearVistaComponent } from '../../vistas/components/Mongo/crear-vista/c
 export class AdminCarrosComponent implements OnInit {
 
   autos: Auto[] = []
+  info: Movil={}
 
   displayedColumns: string[] = ['_id', 'nombre', 'acciones']
   dataSource = new MatTableDataSource<Auto>(this.autos)
@@ -29,7 +30,7 @@ export class AdminCarrosComponent implements OnInit {
     this.leerlista()
   } 
   leerlista(){
-    this.auto.GetAutos().subscribe((data: any) =>{
+    this.auto.postAutos(this.info).subscribe((data: any) =>{
       this.dataSource.data = data.autos!
     });
     
