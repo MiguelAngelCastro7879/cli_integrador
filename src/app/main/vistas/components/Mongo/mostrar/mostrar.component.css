@@ -7,18 +7,17 @@
     th{
       width: 18%;
     }
-    .mat-form-field {
-      font-size: 15px;
-      width: 100%;
+    .search-div{
+      margin: 10px;
     }
-    .example-margin {
-      margin: 0 10px;
+    
+    .search-form-field{
+      width: 89%;
+      margin-left: 10px;
+      padding: 5px 10px;
     }
 
 .boton{
   width: 100%;
   text-align: left;
-}
-.filtro{
-  width: max-content;
 }

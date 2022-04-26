@@ -34,6 +34,9 @@ export class AutoService {
   GetAutos(){
     return this.http.post<Respuesta>(rutas.obtenerAutosUsuario, {headers:this.header})
   }
+  GetAll(){
+    return this.http.get<Respuesta>(rutas.obtener, {headers:this.header})
+  }
   GetAuto(_id:any){
     return this.http.get<Respuesta>(rutas.Obtener+_id)
   }
