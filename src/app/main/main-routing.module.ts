@@ -9,6 +9,7 @@ import { MostrarComponent } from './vistas/components/Mongo/mostrar/mostrar.comp
 import { LedsComponent } from './vistas/components/Mongo/leds/leds.component';
 import { GraficaComponent } from './vistas/components/Mongo/grafica/grafica.component';
 import { AdminCarrosComponent } from './Admin/admin-carros/admin-carros.component';
+import { AuthGuardGuard } from '../shared/guards/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -17,35 +18,45 @@ const routes: Routes = [
     children: [
       {
         path:'2',
-        component:MainComponent2
+        component:MainComponent2,
+        canActivateChild:[AuthGuardGuard]
       },
       {
         path:'vistas',
-        component:VistasComponent
+        component:VistasComponent,
+        canActivateChild:[AuthGuardGuard]
       },
       {
         path:'sensores',
-        component:VerSensComponent
+        component:VerSensComponent,
+        canActivateChild:[AuthGuardGuard]
       },
       {
         path:'controles/:id',
-        component:ControlesComponent
+        component:ControlesComponent,
+        canActivateChild:[AuthGuardGuard]
       },
       {
         path:'mongo',
         component:MostrarComponent,
+        canActivateChild:[AuthGuardGuard]
       },
       {
         path:'leds/:id',
         component:LedsComponent,
+        canActivateChild:[AuthGuardGuard]
       },
       {
         path:'grafica/:id',
         component:GraficaComponent,
+<<<<<<< HEAD
       },
       {
         path:'adminCars',
         component:AdminCarrosComponent
+=======
+        canActivateChild:[AuthGuardGuard]
+>>>>>>> d2930a93fb0e10e2e5d4a080246d87ccfae9d05e
       }
     ]
   },

@@ -1,12 +1,13 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 import { delay, interval, Subscription } from 'rxjs';
-import { Movil, Temperatura } from 'src/app/Models/Auto';
+import { Infrarrojo1, Infrarrojo2, Movil, Temperatura, Ultrasonico1, Ultrasonico2, Velocidad } from 'src/app/Models/Auto';
 import { SensoresService } from 'src/app/shared/services/sensores.service';
 
 @Component({
@@ -18,18 +19,28 @@ export class GraficaComponent implements OnInit {
   
   displayedColumns: string[] = [ 'valor', 'fecha'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
-  datos!: Temperatura[]
+  // datos!: Temperatura[]
+  inf1!: Infrarrojo1[]
+  inf2!: Infrarrojo2[]
+  vel!:Velocidad[]
+  ult1!: Ultrasonico1[]
+  ult2!: Ultrasonico2[]
   movil: Movil = {}
-  dataSource = new MatTableDataSource<Temperatura>(this.datos)
+  dataSource = new MatTableDataSource<any>()
+  dataSource1 = new MatTableDataSource<Infrarrojo1>(this.inf1)
+  dataSource2= new MatTableDataSource<Infrarrojo2>(this.inf2)
+  dataSource3 = new MatTableDataSource<Velocidad>(this.vel)
+  dataSource4 = new MatTableDataSource<Ultrasonico1>(this.ult1)
+  dataSource5 = new MatTableDataSource<Ultrasonico2>(this.ult2)
   // sus!: Subscription
   // dataSourceGraficaTemperatura = new MatTableDataSource<Temperatura>(this.datos)
   dataSourceGraficaTemperatura: Array<any> = [];  dataSourceGraficaUltrasonicos1: Array<any> = [];
   dataSourceGraficaInfrarrojo1: Array<any> = [];  dataSourceGraficaUltrasonicos2: Array<any> = [];
   dataSourceGraficaInfrarrojo2: Array<any> = [];  dataSourceGraficaVelocidades: Array<any> = [];
   chart: any = []
-  ultimaGrafica = 0
+  ultimaGrafica = 1
 
-  contador = interval(5000).subscribe({
+  contador = interval(10000).subscribe({
     next:()=>{
       // console.log("se actualiza la grafica")
       this.leerlista(this.movil._id);
@@ -39,7 +50,7 @@ export class GraficaComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private peticion: SensoresService, private readonly dialog: MatDialog, private activatedRouter: ActivatedRoute) {
+  constructor(private peticion: SensoresService, private readonly dialog: MatDialog, private activatedRouter: ActivatedRoute, private _liveAnnouncer: LiveAnnouncer) {
     Chart.register(...registerables)
     this.activatedRouter.params.subscribe(
       params => {
@@ -68,27 +79,104 @@ export class GraficaComponent implements OnInit {
     let actualizar = 0
     this.peticion.Datos(id).subscribe({
       next: (data) => {
-        // console.log(data)
+
+        let temp = []
+        let temp2 = []
+
         if( this.dataSourceGraficaTemperatura!.length != data.auto![0].temperatura!.length){
-          actualizar = 1
-          // console.log("son arrays diferentes 1")
-          this.dataSourceGraficaTemperatura = []
-          data.auto![0].temperatura!.forEach((valores: any) => { this.dataSourceGraficaTemperatura.push(valores.valor!) });
-  
-          this.dataSourceGraficaUltrasonicos1 = []
-          data.auto![0].ultrasonico1!.forEach((valores: any) => { this.dataSourceGraficaUltrasonicos1.push(valores.valor!) });
+          actualizar = 1          
+          switch(this.ultimaGrafica){
+            case 1:
+                temp = []
+                temp2 = []
+                for (let index = data.auto![0].ultrasonico1!.length-1; index > 0; index--) {
+                    if(temp.length<11){
+                      temp.push(data.auto![0].ultrasonico1![index].valor!.toFixed(2))     
+                    }
+                }
+                for (let index2:any = temp.length-1; index2 >= 0; index2--) {
+                  temp2.push(temp[index2])
+                }
+                if(temp2 != this.dataSourceGraficaUltrasonicos1){
+                  this.dataSourceGraficaUltrasonicos1 = temp2
+                }
+
+                temp = []
+                temp2 = []
+                
+                for (let index = data.auto![0].ultrasonico2!.length-1; index > 0; index--) {
+                  if(temp.length<11){
+                    temp.push(data.auto![0].ultrasonico2![index].valor!.toFixed(2))     
+                  }
+                }
+                for (let index2:any = temp.length-1; index2 >= 0; index2--) {
+                  temp2.push(temp[index2])
+                }
+                if(temp2 != this.dataSourceGraficaUltrasonicos2){
+                  this.dataSourceGraficaUltrasonicos2 = temp2
+                }
+               
+                this.dataSource.data = data.auto![0].ultrasonico1!  
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;  
+              break;
+            case 2:
+              
+              temp = []
+              temp2 = []
+              for (let index = data.auto![0].infrarrojo1!!.length-1; index > 0; index--) {
+                  if(temp.length<11){
+                    temp.push(data.auto![0].infrarrojo1!![index].valor!.toFixed(2))     
+                  }
+              }
+              for (let index2:any = temp.length-1; index2 >= 0; index2--) {
+                temp2.push(temp[index2])
+              }
+              if(temp2 != this.dataSourceGraficaInfrarrojo1){
+                this.dataSourceGraficaInfrarrojo1 = temp2
+              }
+
+              temp = []
+              temp2 = []
+              
+              for (let index = data.auto![0].infrarrojo2!!.length-1; index > 0; index--) {
+                if(temp.length<11){
+                  temp.push(data.auto![0].infrarrojo2!![index].valor!.toFixed(2))     
+                }
+              }
+              for (let index2:any = temp.length-1; index2 >= 0; index2--) {
+                temp2.push(temp[index2])
+              }
+              if(temp2 != this.dataSourceGraficaInfrarrojo2){
+                this.dataSourceGraficaInfrarrojo2 = temp2
+              }
+              
+              this.dataSource.data = data.auto![0].infrarrojo1!  
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.sort = this.sort;  
+              break;
+            case 3:
+
+              temp = []
+              temp2 = []
+              
+              for (let index = data.auto![0].velocidad!!.length-1; index > 0; index--) {
+                if(temp.length<11){
+                  temp.push(data.auto![0].velocidad!![index].valor!.toFixed(2))     
+                }
+              }
+              for (let index2:any = temp.length-1; index2 >= 0; index2--) {
+                temp2.push(temp[index2])
+              }
+              if(temp2 != this.dataSourceGraficaVelocidades){
+                this.dataSourceGraficaVelocidades = temp2
+              }
+              this.dataSource.data = data.auto![0].velocidad!  
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.sort = this.sort;  
+              break;
+          }
           
-          this.dataSourceGraficaInfrarrojo1 = []
-          data.auto![0].infrarrojo1!.forEach((valores: any) => { this.dataSourceGraficaInfrarrojo1.push(valores.valor!) });
-          
-          this.dataSourceGraficaUltrasonicos2 = []
-          data.auto![0].ultrasonico2!.forEach((valores: any) => { this.dataSourceGraficaUltrasonicos2.push(valores.valor!) });
-          
-          this.dataSourceGraficaInfrarrojo2 = []
-          data.auto![0].infrarrojo2!.forEach((valores: any) => { this.dataSourceGraficaInfrarrojo2.push(valores.valor!) });
-          
-          this.dataSourceGraficaVelocidades = []
-          data.auto![0].velocidad!.forEach((valores: any) => { this.dataSourceGraficaVelocidades.push(valores.valor!) });
         }
       },
       complete: () => {
@@ -100,9 +188,9 @@ export class GraficaComponent implements OnInit {
             this.chart.destroy();
           }
           switch(this.ultimaGrafica){
-            case 0:
-              this.temperatura()
-              break;
+            // case 0:
+            //   this.temperatura()
+            //   break;
             case 1:
               this.ultrasonicos()
               break;
@@ -119,7 +207,6 @@ export class GraficaComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
@@ -140,33 +227,7 @@ export class GraficaComponent implements OnInit {
       }
     });
   }
-
-  delete(id: number) {
-    this.peticion.borrar(id).subscribe((res: any) => {
-      this.datos = res.mensaje!
-      this.leerlista(this.movil._id)
-    })
-  }
   
-  temperatura(){
-    this.ultimaGrafica = 0
-    if (this.chart instanceof Chart) {
-      this.chart.destroy();
-    }
-    let datos = {
-      labels: this.dataSourceGraficaTemperatura,
-      datasets: [
-        {
-        data: this.dataSourceGraficaTemperatura,
-        label: "Total",
-        borderColor: "#FF0000",
-        backgroundColor: "#FF0000",
-        fill: false,
-      },
-      ]
-    }
-    this.grafica(datos)
-  }
   ultrasonicos(){
     this.ultimaGrafica = 1
     if (this.chart instanceof Chart) {
@@ -240,5 +301,18 @@ export class GraficaComponent implements OnInit {
     }
 
     this.grafica(datos)
+  }
+  
+  /** Announce the change in sort state for assistive technology. */
+  announceSortChange(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 }

@@ -25,19 +25,19 @@ export class UsuariosService {
   
   
   getAll(): Observable<any>{
-    return this.http.get<Respuesta>(rutas.usuarios, {headers:this.header})
+    return this.http.get<Respuesta>(rutas.usuarios)
   }
   getOne(){
-    return this.http.get<Respuesta>(rutas.usuarios, {headers:this.header})
+    return this.http.get<Respuesta>(rutas.usuarios)
   }
   getUser(id:number): Observable<any>{
-    return this.http.get<Respuesta>(rutas.usuarios+'/'+id, {headers:this.header})
+    return this.http.get<Respuesta>(rutas.usuarios+'/'+id)
   }
   status(id:any){
-    return this.http.delete<Respuesta>(rutas.usuarios+'/'+id, {headers:this.header})
+    return this.http.delete<Respuesta>(rutas.usuarios+'/'+id)
   }
   update(id:any, info: User): Observable<any>{
-    return this.http.put<Respuesta>(rutas.usuarios+'/'+id, info, {headers:this.header})
+    return this.http.put<Respuesta>(rutas.usuarios+'/'+id, info)
     .pipe(
       tap(() => {
         this._refresh$.next();

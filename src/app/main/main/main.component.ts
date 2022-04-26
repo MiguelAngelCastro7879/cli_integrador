@@ -42,7 +42,6 @@ export class MainComponent implements OnInit, AfterViewInit {
   panelOpenState = false;
   user: User = {}
   categorias : Categoria[] = [] 
-  usuario: Usuario = {}
 
   ngOnInit(): void {
     this.getUser()
@@ -89,7 +88,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   
   getRol(){
     this._authService.getUser().subscribe(respuesta=>{
-      this.usuario = respuesta.user! 
+      this.user = respuesta.user! 
     })
   }
   

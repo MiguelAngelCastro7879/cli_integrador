@@ -11,22 +11,13 @@ export class LoginRegisterGuard implements CanActivateChild {
   
   constructor(private router:Router,private _authService: AuthService, private _cookieService:CookieService){
   }
-  
-  
-  redireccion(cookies:boolean):any{
-    if(cookies){
-      return this.router.navigate(['/main']);
-    }else{
-      return this.router.navigate(['/auth/login']);
-    }
-  }
 
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (this._authService.isLoggedIn()) {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/main/2']);
     }
     return !this._authService.isLoggedIn();
   }

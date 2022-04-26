@@ -15,7 +15,7 @@ export class ControlesComponent implements OnInit {
     nombre:''
   }
 
-  estado=true
+  estado = true
   constructor(private auto:AutoService,private activatedRouter: ActivatedRoute, private router:Router) {
     this.activatedRouter.params.subscribe(
       params=>{
@@ -32,6 +32,7 @@ export class ControlesComponent implements OnInit {
     this.auto.GetAuto(_id).subscribe(
       respuesta=>{
         this.movil = respuesta.auto![0]
+        console.log(respuesta)
       })
 }
 
@@ -49,9 +50,9 @@ mover(){
         "Motor_Delante" : true, 
         "Motor_Reversa" : false, 
         "Motor_Derecha" : false, 
-        "Motor_Izquieda" : false, 
+        "Motor_Izquierda" : false, 
         "Motor_Apagado" : false,
-        "Motor_Velocidad":50
+        "Motor_Velocidad":40
       }
     }
 
@@ -65,9 +66,9 @@ mover(){
       "Motor_Delante" : false, 
       "Motor_Reversa" : true, 
       "Motor_Derecha" : false, 
-      "Motor_Izquieda" : false, 
+      "Motor_Izquierda" : false, 
       "Motor_Apagado" : false,
-      "Motor_Velocidad":50
+      "Motor_Velocidad":40
     }
   }
 
@@ -80,9 +81,9 @@ mover(){
       "Motor_Delante" : false, 
       "Motor_Reversa" : false, 
       "Motor_Derecha" : false, 
-      "Motor_Izquieda" : true, 
+      "Motor_Izquierda" : true, 
       "Motor_Apagado" : false,
-      "Motor_Velocidad":50
+      "Motor_Velocidad":40
     }
   }
 
@@ -96,9 +97,9 @@ mover(){
       "Motor_Delante" : false, 
       "Motor_Reversa" : false, 
       "Motor_Derecha" : true, 
-      "Motor_Izquieda" : false, 
+      "Motor_Izquierda" : false, 
       "Motor_Apagado" : false,
-      "Motor_Velocidad":50
+      "Motor_Velocidad":40
     }
   }
 
@@ -112,7 +113,7 @@ mover(){
       "Motor_Delante" : false, 
       "Motor_Reversa" : false, 
       "Motor_Derecha" : false, 
-      "Motor_Izquieda" : false, 
+      "Motor_Izquierda" : false, 
       "Motor_Apagado" : true,
       "Motor_Velocidad":0 
     }
@@ -125,35 +126,35 @@ mover(){
     this.estado = false
     const body = {
       auto:_id,
-      valores:{
-          estado:false,
-        }
+        valores:{
+          estado: false
+      }
       
   }
-
-    this.auto.Enceder(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
+    this.auto.Apagar(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
   }
 
   On(_id: any){
     this.estado = true
     const body = {
       auto:_id,
-      valores:{
-          estado:true,
-        }
-      
-  }
+        valores:{
+          estado: true
+      }
 
+  }
     this.auto.Enceder(body).subscribe(datos => {console.log(datos),this.ngOnInit()});
   }
+
   onoff(_id:any){
     if(this.estado){
       this.On(this.movil._id)
-      console.log('Encendido')
+      console.log('Enciende')
     }else if(!this.estado){
       this.Off(this.movil._id)
-      console.log('Apagado')
+      console.log('Apaga')
     }
-    this.estado = !this.estado 
+    this.estado = !this.estado
   }
+
 }

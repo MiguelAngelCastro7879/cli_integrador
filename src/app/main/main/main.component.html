@@ -32,12 +32,15 @@
           <mat-menu #subMenu="matMenu">
             <mat-list-item>
             <a mat-menu-item routerLink="sensores"><mat-icon mat-list-icon>widgets</mat-icon>Datos Sensores</a>
+            <div *ngIf="user.rol == 'USER'; " >
             <a mat-menu-item routerLink="vistas"><mat-icon mat-list-icon>person</mat-icon>Usuarios</a>
-            
             <a mat-menu-item routerLink="mongo"><mat-icon mat-list-icon>directions_car</mat-icon>Carrito</a>
+          </div>
             <div *ngIf="user.rol == 'ADMIN'; " >
             <a mat-menu-item routerLink="adminCars"><mat-icon mat-list-icon>directions_car</mat-icon>Carritos</a>
           </div>
+            <button mat-menu-item routerLink="vistas"><mat-icon mat-list-icon>person</mat-icon>Usuarios</button>
+            <button mat-menu-item routerLink="mongo"><mat-icon mat-list-icon>directions_car</mat-icon>Carrito</button>
             </mat-list-item>
           </mat-menu>
         </span>
