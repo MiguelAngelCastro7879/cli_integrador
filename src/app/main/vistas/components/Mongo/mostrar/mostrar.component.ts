@@ -7,6 +7,7 @@ import { Auto, Movil } from 'src/app/Models/Auto';
 import { AutoService } from 'src/app/shared/services/auto.service';
 import { CrearVistaComponent } from '../crear-vista/crear-vista.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mostrar',
@@ -16,7 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class MostrarComponent implements OnInit {
 
   autos: Auto[] = []
-
+  sus!: Subscription
   displayedColumns: string[] = ['_id', 'nombre', 'acciones']
   dataSource = new MatTableDataSource<Auto>(this.autos)
 
@@ -27,6 +28,9 @@ export class MostrarComponent implements OnInit {
 
   ngOnInit() {
     this.leerlista()
+    this.sus = this.auto.refresh$.subscribe(()=>{
+      this.leerlista()
+    })
   } 
   leerlista(){
     this.auto.GetAutos().subscribe((data: any) =>{

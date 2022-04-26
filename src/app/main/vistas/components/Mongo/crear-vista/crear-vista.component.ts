@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MostrarComponent } from '../mostrar/mostrar.component';
 import { AutoService } from 'src/app/shared/services/auto.service';
+import { Subscription } from 'rxjs';
 
 
 
@@ -14,7 +15,6 @@ import { AutoService } from 'src/app/shared/services/auto.service';
 })
 export class CrearVistaComponent implements OnInit {
   public formGroup!: FormGroup;
-
   public autos: Movil={};
 
   constructor(public dialogRef: MatDialogRef<MostrarComponent>,private formBuilder: FormBuilder,private servicioAuto:AutoService ) { 
@@ -27,7 +27,8 @@ export class CrearVistaComponent implements OnInit {
 get codigo_serie() { return this.formGroup.get('codigo_serie'); }
 get nombre() { return this.formGroup.get('nombre'); }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onSubmit(){
     this.autos = this.formGroup.value

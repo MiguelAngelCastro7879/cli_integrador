@@ -26,5 +26,26 @@ export interface LED {
 
 export interface Temperatura {
     valor?: number;
+    fecha?: Date;
+}
+export interface Infrarrojo1 {
+    valor?: number;
+    fecha?: Date;
+}
+export interface Infrarrojo2 {
+    valor?: number;
+    fecha?: Date;
+}
+export interface Ultrasonico1 {
+    valor?: number;
+    fecha?: Date;
+}
+export interface Ultrasonico2 {
+    valor?: number;
+    fecha?: Date;
+}
+export interface Velocidad {
+    valor?: number;
+    fecha?: Date;
 }
 

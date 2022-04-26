@@ -45,12 +45,13 @@ export class LedsComponent implements OnInit {
     this.auto.GetLeds(this.movil._id).subscribe({
       next:(data:any)=>{
       this.dataSource.data = data.estados![0]
+      // console.log(data)
       this.dataSource.data = []
       data.estados!.forEach((valores: any) => {
         valores.leds!.forEach((led: any) => {
-          // console.log(led)
+          //console.log(led)
           this.dataSource.data.push(led)
-          // console.log("leds", valores.leds!)
+          //  console.log("leds", valores.leds!)
         });
         // console.log(valores.leds!)
         // this.dataSource.data.push(valores.leds!)

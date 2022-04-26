@@ -1,7 +1,7 @@
 import { Token, User } from "./User";
 import { Categoria } from "./Categoria";
 import { sensor } from "./sensores";
-import { Auto, Estado, Movil, Temperatura } from "./Auto";
+import { Auto, Estado, Movil, Temperatura, Ultrasonico1, Ultrasonico2, Velocidad } from "./Auto";
 
 export interface Respuesta {
     mensaje?: string;
@@ -15,4 +15,7 @@ export interface Respuesta {
     auto?:     Movil[];
     estados?: Estado[];
     temperatura?: Temperatura[];
+    ultrasonico1?: Ultrasonico1[];
+    ultrasonico2?: Ultrasonico2[];
+    velocidad?: Velocidad[];
 }
