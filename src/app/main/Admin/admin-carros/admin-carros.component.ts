@@ -18,7 +18,7 @@ export class AdminCarrosComponent implements OnInit {
 
   autos: Auto[] = []
   sus!: Subscription
-  displayedColumns: string[] = ['_id', 'nombre', 'acciones']
+  displayedColumns: string[] = ['_id', 'nombre', 'usuario', 'acciones']
   dataSource = new MatTableDataSource<Auto>(this.autos)
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -34,7 +34,7 @@ export class AdminCarrosComponent implements OnInit {
   } 
   leerlista(){
     this.auto.GetAll().subscribe((data: any) =>{
-      this.dataSource.data = data.autos![0].user.username
+      this.dataSource.data = data.autos!
       console.log(data)
     });
     
